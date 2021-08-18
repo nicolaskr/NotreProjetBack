@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 package dao;
 
 import java.util.List;
@@ -18,3 +19,4 @@ public interface IDAO<T,K>{
 	
 	public void delete(K id);
 }
+
