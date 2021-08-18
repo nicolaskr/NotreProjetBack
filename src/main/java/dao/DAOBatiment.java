@@ -10,17 +10,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
-import metier.Bastide;
-import metier.Batiment;
-import metier.Carriere;
-import metier.Catapulte;
-import metier.Fonderie;
-import metier.Forteresse;
-import metier.Four;
-import metier.Merveille;
-import metier.Mine;
-import metier.Muraille;
-import metier.Scierie;
+import model.*;
 import util.Context;
 
 public class DAOBatiment {

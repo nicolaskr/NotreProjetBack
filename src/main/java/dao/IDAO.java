@@ -1,4 +1,3 @@
-<<<<<<< Updated upstream
 package dao;
 
 import java.util.List;
