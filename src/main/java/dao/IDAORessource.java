@@ -2,7 +2,7 @@ package dao;
 
 import java.util.List;
 
-import metier.Ressource;
+import model.Ressource;
 
 public interface IDAORessource extends IDAO <Ressource,Integer> {
 
