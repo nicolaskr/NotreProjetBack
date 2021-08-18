@@ -6,8 +6,8 @@ import java.util.List;
 import javax.persistence.EntityManager;
 
 import dao.IDAORessource;
-import metier.Compte;
-import metier.Ressource;
+//import model.Compte;
+import model.Ressource;
 import util.Context;
 
 public class DAORessource implements IDAORessource {
@@ -68,6 +68,6 @@ public class DAORessource implements IDAORessource {
 		em.close();
 		return ressources;
 	}
-	
-	
 }
+
+	
