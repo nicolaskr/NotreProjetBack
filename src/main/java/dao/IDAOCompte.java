@@ -1,6 +1,6 @@
 package dao;
 
-import metier.Compte;
+import model.Compte;
 
 public interface IDAOCompte extends IDAO<Compte, Integer> {
 

@@ -6,13 +6,13 @@ import java.util.List;
 import javax.persistence.EntityManager;
 
 import model.*;
-import model.Test_Nico;
 import util.Context;
 
 public class Test {
 
 	public static void main(String[] args) {
 						
+
 		EntityManager em = Context.getInstance().getEmf().createEntityManager();
 		
 		Bois b = new Bois(2);
@@ -28,11 +28,10 @@ public class Test {
 		em.getTransaction().begin();
 		
 		em.persist(stock);
-		
+
+
 		em.getTransaction().commit();
-		
 		em.close();
-				
 		Context.getInstance().closeEmf();
 		
 	}
