@@ -56,7 +56,7 @@ public class Context {
 		emf.close();
 	}
 	
-	public int saisieInt(String msg) 
+	public static int saisieInt(String msg) 
 	{
 		Scanner sc = new Scanner(System.in);
 		System.out.println(msg);

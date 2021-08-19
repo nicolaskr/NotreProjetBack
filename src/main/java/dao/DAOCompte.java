@@ -100,12 +100,12 @@ public class DAOCompte implements IDAOCompte{
 		return c;
 	}
 	
-	public void ajoutSession(int idPartie, int idCompte) {
-		EntityManager em = Context.getInstance().getEmf().createEntityManager();
-		Query query = em.createNativeQuery("INSERT INTO joueur (id_partie,id_compte) VALUES (:idp,:idc)",Session.class);
-		query.setParameter("idp", idPartie);
-		query.setParameter("idc", idCompte);
-		em.close();
-	}
+//	public void ajoutSession(int idPartie, int idCompte) {
+//		EntityManager em = Context.getInstance().getEmf().createEntityManager();
+//		Query query = em.createNativeQuery("INSERT INTO joueur (id_partie,id_compte) VALUES (:idp,:idc)",Session.class);
+//		query.setParameter("idp", idPartie);
+//		query.setParameter("idc", idCompte);
+//		em.close();
+//	}
 	
 }
