@@ -25,11 +25,11 @@ public class Test {
 		Four f = new Four();
 		Fonderie fo = new Fonderie();
 
-		s.getConstructions().add(c);
-		s.getConstructions().add(m);
-		s.getConstructions().add(f);
-		s.getConstructions().add(sc);
-		s.getConstructions().add(fo);
+//		s.getConstructions().add(c);
+//		s.getConstructions().add(m);
+//		s.getConstructions().add(f);
+//		s.getConstructions().add(sc);
+//		s.getConstructions().add(fo);
 		
 		Bois b = new Bois(2);
 		Pierre p = new Pierre(3);
@@ -59,9 +59,15 @@ public class Test {
 		Context.getInstance().getDaoB().insert(fo);*/
 
 		Context.getInstance().getDaoS().update(s);
+		
 
 		em.getTransaction().commit();
+		
 		em.close();
+		
+		s.construitBastide();
+		System.out.println(s.getConstructions());
+		
 		Context.getInstance().closeEmf();
 	}
 

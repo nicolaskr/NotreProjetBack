@@ -96,7 +96,7 @@ public class Partie {
 				System.out.println("\nDans cette partie vous serez "+connected.getSurnom());
 	
 				Context.getInstance().getDaoS().update(session1);
-				
+												
 				sessions.add(session1);
 				
 				for(Ressource r : session1.getStock())
