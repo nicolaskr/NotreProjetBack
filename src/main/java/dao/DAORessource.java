@@ -4,9 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
 
 import dao.IDAORessource;
-//import model.Compte;
+import model.Compte;
 import model.Ressource;
 import util.Context;
 
@@ -63,8 +64,12 @@ public class DAORessource implements IDAORessource {
 	public List<Ressource> findAllByIdCompteIdPartie(Integer idCompte, Integer idPartie) {
 		
 		EntityManager em = Context.getInstance().getEmf().createEntityManager();
-		List<Ressource> ressources = em.createNativeQuery("SELECT * FROM ressource WHERE id_compte= :idCompte AND id_partie= : idPartie", Ressource.class).getResultList();
 		
+		
+		Query myQuery= em.createNativeQuery("SELECT * FROM ressource WHERE id_compte= :idC AND id_partie= :idP", Ressource.class);
+		myQuery.setParameter("idC", idCompte);
+		myQuery.setParameter("idP", idPartie);
+		List<Ressource> ressources  = myQuery.getResultList();
 		em.close();
 		return ressources;
 	}

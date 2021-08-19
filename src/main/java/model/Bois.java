@@ -5,6 +5,8 @@ import java.util.List;
 
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+
+@Entity
 @DiscriminatorValue("Bois")
 public class Bois extends Ressource{
 
