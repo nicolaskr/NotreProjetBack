@@ -100,7 +100,7 @@ public class Joueur extends Compte{
 		super(login, password);
 		aCommence = false;
 	}
-	
+	/*
 	public void construitBastide(int idCompte,int idPartie)
 	{
 		Bastide bastide = new Bastide();
@@ -868,4 +868,6 @@ public class Joueur extends Compte{
 		}
 	}	
 	
+
+*/
 }
