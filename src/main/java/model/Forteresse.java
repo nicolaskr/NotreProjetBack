@@ -7,19 +7,18 @@ import javax.persistence.Entity;
 
 @Entity
 public class Forteresse extends Defense {
-	/*protected Bois b = new Bois(3);
-	protected Pierre p = new Pierre(3);
-	protected Minerais m = new Minerais(0);
-	protected Charbon c = new Charbon(3);
-	protected Gold g = new Gold(0);
-	protected Fer f = new Fer(0);
-	protected Cuivre cu = new Cuivre(0);*/
-	protected double def = 100;
+	protected transient Bois b = new Bois(3);
+	protected transient Pierre p = new Pierre(3);
+	protected transient Minerais m = new Minerais(0);
+	protected transient Charbon c = new Charbon(3);
+	protected transient Gold g = new Gold(0);
+	protected transient Fer f = new Fer(0);
+	protected transient Cuivre cu = new Cuivre(0);
 	
 	public Forteresse() 	
 	{
-		//setNom("forteresse");
-		//cost.add(b);cost.add(p);cost.add(m);cost.add(c);cost.add(g);cost.add(f);cost.add(cu);
+		setNom("forteresse");
+		cost.add(b);cost.add(p);cost.add(m);cost.add(c);cost.add(g);cost.add(f);cost.add(cu);
 		setDef(100);
 	}
 
@@ -27,9 +26,9 @@ public class Forteresse extends Defense {
 		super(nom, level, def);
 	}
 	
-	public Forteresse(int id,int idCompte, int idPartie,String nom, int level, double def)
+	public Forteresse(int id, String nom, int level, double def)
 	{
-		super(id,idCompte, idPartie,nom, level, def);
+		super(id, nom, level, def);
 		cost.add(b);cost.add(p);cost.add(m);cost.add(c);cost.add(g);cost.add(f);cost.add(cu);
 	}
 	

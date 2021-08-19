@@ -17,13 +17,13 @@ import javax.persistence.MapsId;
 @Entity
 public class Session {
 
-	@ManyToMany
+	@ManyToMany(cascade = {CascadeType.MERGE,CascadeType.PERSIST})
 	@JoinTable(name="liste_ressource",inverseJoinColumns=@JoinColumn(name="ressources"))
 	protected List<Ressource> stock = new ArrayList <Ressource>();
 	
-	@ManyToMany
+	@ManyToMany(cascade = {CascadeType.MERGE,CascadeType.PERSIST})
 	@JoinTable(name="liste_batiments",inverseJoinColumns=@JoinColumn(name="batiments"))
-	protected List<Batiment> construction = new ArrayList <Batiment>();
+	protected List<Batiment> constructions = new ArrayList <Batiment>();
 		
 	@EmbeddedId 
 	private SessionId id;
@@ -31,11 +31,11 @@ public class Session {
 	@Column(name = "a_joue_le_tours")
 	private boolean aJoueLeTours;
 	
-	@ManyToOne
+	@ManyToOne(cascade = {CascadeType.MERGE,CascadeType.PERSIST})
     @MapsId("idPartie")
     private Partie partie;
 	
-	@ManyToOne
+	@ManyToOne(cascade = {CascadeType.MERGE,CascadeType.PERSIST})
     @MapsId("idCompte")
     private Compte compte;
 				
@@ -88,12 +88,12 @@ public class Session {
 		this.stock = stock;
 	}
 
-	public List<Batiment> getConstruction() {
-		return construction;
+	public List<Batiment> getConstructions() {
+		return constructions;
 	}
 
-	public void setConstruction(List<Batiment> construction) {
-		this.construction = construction;
+	public void setConstructions(List<Batiment> constructions) {
+		this.constructions = constructions;
 	}
 	
 	@Override
