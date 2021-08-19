@@ -25,10 +25,10 @@ public class DAOCompte implements IDAOCompte{
 		Compte c = em.find(Compte.class,id);
 		em.close();
 		
-		if (c.getTypeCompte().equals("Admin")) {
+		if (c instanceof Admin) {
 			c= (Admin)c;
 		}
-		else if (c.getTypeCompte().equals("Joueur")) {
+		else if (c instanceof Joueur) {
 			c= (Joueur)c;
 		}
 		return c;

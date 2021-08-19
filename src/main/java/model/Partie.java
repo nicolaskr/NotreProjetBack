@@ -52,6 +52,15 @@ public class Partie {
 	
 	//Getters & Setters
 
+	public List<Session> getSessions() {
+		return sessions;
+	}
+
+	public void setSessions(List<Session> sessions) {
+		this.sessions = sessions;
+	}	
+	
+	
 	public int getId() {
 		return id;
 	}
@@ -182,6 +191,8 @@ public class Partie {
 		return cptPartie++;
 	}
 	
+
+
 	public void startPartie(Partie p){
 
 		p.partieEnCours=true;
@@ -204,9 +215,9 @@ public class Partie {
 					System.out.println("\nTour "+(i)+" - " + c.getPrenom() + " " + c.getNom() + " " + c.getSurnom() + "\n");
 					j1.setTourEnCours(true);
 					j1.piocherRessources();
-					while(j1.getTourEnCours()==true)
+					while(j1.isTourEnCours()==true)
 					{
-						j1.joueTour(p);
+						j1.joueTour();
 					}
 					finDePartie(p);/*savePartie(p);*/
 
@@ -227,6 +238,7 @@ public class Partie {
 				break;
 			}
 		}
+		
 		if(p.partieEnCours==false)
 		{
 			menuFinDePartie(p,vainqueur);
@@ -253,7 +265,7 @@ public class Partie {
 
 			else 
 			{
-				for(Batiment b : joueur.getConstruction())
+				for(Batiment b : joueur.getConstructions())
 				{
 					if(b.toStringName().equals("Merveille"))
 					{
