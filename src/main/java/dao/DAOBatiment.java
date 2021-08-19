@@ -51,6 +51,15 @@ public class DAOBatiment {
 		return b;
 	}
 	
+	public Batiment ajoutBatiment(Batiment b) {
+		EntityManager em = Context.getInstance().getEmf().createEntityManager();
+		em.getTransaction().begin();
+		em.persist(b);
+		em.getTransaction().commit();
+		em.close();
+		return b;
+	}
+	
 	public Batiment update(Batiment b) {
 		EntityManager em = Context.getInstance().getEmf().createEntityManager();
 		em.getTransaction().begin();
