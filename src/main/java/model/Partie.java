@@ -16,6 +16,13 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import metier.Bois;
+import metier.Charbon;
+import metier.Cuivre;
+import metier.Fer;
+import metier.Gold;
+import metier.Minerais;
+import metier.Pierre;
 import model.*;
 import util.Context;
 
@@ -94,47 +101,53 @@ public class Partie {
 				System.out.println("\nJoueur 1 : ");
 				System.out.println("\nBienvenue "+connected.getPrenom()+" "+connected.getNom()+", vous etes le Joueur 1, quelle chance ! ");
 				System.out.println("\nDans cette partie vous serez "+connected.getSurnom());
-	
-				Context.getInstance().getDaoS().update(session1);
-												
+					
+				
+				Bois b = new Bois(0);
+				Pierre pi = new Pierre(0);
+				Minerais m = new Minerais(0);
+				Charbon ch = new Charbon(0);
+				Gold g = new Gold(0);
+				Fer f = new Fer(0);
+				Cuivre cu = new Cuivre(0);
+				List <Ressource> stock = new ArrayList();
+				stock.add(b);stock.add(pi);stock.add(m);stock.add(ch);stock.add(g);stock.add(f);stock.add(cu);
+				session1.setRessources(stock);
+				session1=Context.getInstance().getDaoS().update(session1);
+
 				sessions.add(session1);
-				
-				for(Ressource r : session1.getStock())
-				{
-					Context.getInstance().getDaoR().insert(r);
-				}
-				
-				for(Batiment b : session1.getConstruction())
-				{
-					Context.getInstance().getDaoB().insert(b);
-				}
+
 			}
 			
 			else
 			{
 				System.out.println("\nJoueur "+(i+1)+" : ");
-				String compteCree = Context.saisieString("Ce joueur a-t-il d�j� un compte ? (y/n)");
+				String compteCree = Context.saisieString("Ce joueur a-t-il deja un compte ? (y/n)");
 				
 				if(compteCree.equalsIgnoreCase("y"))
 				{
 					String surnomJ = Context.saisieString("Veuillez indiquer le surnom du joueur :");
 					Compte c = Context.getInstance().getDaoC().findBySurnom(surnomJ);
 					Session sessionX = new Session (false,p, c);
-					sessionX=Context.getInstance().getDaoS().update(sessionX);
+					
 					
 					System.out.println("\nBienvenue "+c.getPrenom()+" "+c.getNom()+", vous etes le Joueur "+(i+1)+" ! ");
 					System.out.println("\nDans cette partie vous serez "+c.getSurnom());
+					
+					Bois b = new Bois(0);
+					Pierre pi = new Pierre(0);
+					Minerais m = new Minerais(0);
+					Charbon ch = new Charbon(0);
+					Gold g = new Gold(0);
+					Fer f = new Fer(0);
+					Cuivre cu = new Cuivre(0);
+					List <Ressource> stock = new ArrayList();
+					stock.add(b);stock.add(pi);stock.add(m);stock.add(ch);stock.add(g);stock.add(f);stock.add(cu);
+					sessionX.setRessources(stock);
+					sessionX=Context.getInstance().getDaoS().update(sessionX);
+					
 					sessions.add(sessionX);
 					
-					for(Ressource r : sessionX.getStock())
-					{
-						r=Context.getInstance().getDaoR().insert(r);
-					}
-					
-					for(Batiment b : sessionX.getConstruction())
-					{
-						b=Context.getInstance().getDaoB().insert(b);
-					}
 				}
 				else
 				{
@@ -147,21 +160,25 @@ public class Partie {
 					
 					c= Context.getInstance().getDaoC().insert(c);
 					Session sessionX = new Session (false,p, c);
-					sessionX = Context.getInstance().getDaoS().update(sessionX);
+					
 											
 					System.out.println("\nBienvenue "+c.getPrenom()+" "+c.getNom()+", vous etes le Joueur "+(i+1)+" ! ");
 					System.out.println("\nDans cette partie vous serez "+c.getSurnom());
+					
+					Bois b = new Bois(0);
+					Pierre pi = new Pierre(0);
+					Minerais m = new Minerais(0);
+					Charbon ch = new Charbon(0);
+					Gold g = new Gold(0);
+					Fer f = new Fer(0);
+					Cuivre cu = new Cuivre(0);
+					List <Ressource> stock = new ArrayList();
+					stock.add(b);stock.add(pi);stock.add(m);stock.add(ch);stock.add(g);stock.add(f);stock.add(cu);
+					sessionX.setRessources(stock);
+					sessionX=Context.getInstance().getDaoS().update(sessionX);
+					
+					
 					sessions.add(sessionX);
-					
-					for(Ressource r : sessionX.getStock())
-					{
-						r=Context.getInstance().getDaoR().insert(r);
-					}
-					
-					for(Batiment b : sessionX.getConstruction())
-					{
-						b=Context.getInstance().getDaoB().insert(b);
-					}
 				}
 				
 			}
