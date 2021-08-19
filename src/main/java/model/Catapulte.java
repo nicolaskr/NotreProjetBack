@@ -7,23 +7,20 @@ import javax.persistence.Entity;
 
 @Entity
 public class Catapulte extends Attaque {
-	/*protected Bois b = new Bois(3);
-	protected Pierre p = new Pierre(0);
-	protected Minerais m = new Minerais(0);
-	protected Charbon c = new Charbon(0);
-	protected Gold g = new Gold(3);
-	protected Fer f = new Fer(3);
-	protected Cuivre cu = new Cuivre(0);*/
-	
-	protected double att;
-	protected double def;
+	protected transient Bois b = new Bois(3);
+	protected transient Pierre p = new Pierre(0);
+	protected transient Minerais m = new Minerais(0);
+	protected transient Charbon c = new Charbon(0);
+	protected transient Gold g = new Gold(3);
+	protected transient Fer f = new Fer(3);
+	protected transient Cuivre cu = new Cuivre(0);
 	
 	public Catapulte() 
 	
 	{
 		super();
-		//setNom("catapulte");
-		//cost.add(b);cost.add(p);cost.add(m);cost.add(c);cost.add(g);cost.add(f);cost.add(cu);
+		setNom("catapulte");
+		cost.add(b);cost.add(p);cost.add(m);cost.add(c);cost.add(g);cost.add(f);cost.add(cu);
 		setDef(25);
 		setAtt(20);
 	}
@@ -32,9 +29,9 @@ public class Catapulte extends Attaque {
 		super(nom, level, def);
 	}
 	
-	public Catapulte(int id,int idCompte, int idPartie,String nom, int level, double def, double att)
+	public Catapulte(int id, String nom, int level, double def, double att)
 	{
-		super(id,idCompte, idPartie,nom, level, def, att);
+		super(id, nom, level, def, att);
 		cost.add(b);cost.add(p);cost.add(m);cost.add(c);cost.add(g);cost.add(f);cost.add(cu);
 	}
 
