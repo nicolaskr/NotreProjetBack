@@ -33,7 +33,6 @@ public class Test {
 		em.getTransaction().commit();
 		em.close();
 		Context.getInstance().closeEmf();
-		
 	}
 
 }
