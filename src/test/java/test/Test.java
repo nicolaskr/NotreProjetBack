@@ -34,32 +34,34 @@ public class Test {
 		Bois b = new Bois(2);
 		Pierre p = new Pierre(3);
 		Gold g = new Gold (5);
+		Minerais mn = new Minerais(12);
+		Fer fe = new Fer(50);
 		
 		s.getRessources().add(g);
 		s.getRessources().add(p);
 		s.getRessources().add(b);
-		
+		s.getRessources().add(mn);
+		s.getRessources().add(fe);
 
 		em.getTransaction().begin();
+		
+		/*Context.getInstance().getDaoC().insert(j);
+		Context.getInstance().getDaoP().insert(pa);
 
-//		Context.getInstance().getDaoC().insert(j);
-//		Context.getInstance().getDaoP().insert(pa);
-//
-//
-//		Context.getInstance().getDaoB().insert(m);
-//		Context.getInstance().getDaoB().insert(f);
-//		Context.getInstance().getDaoB().insert(sc);
-//		Context.getInstance().getDaoB().insert(c);
-//		Context.getInstance().getDaoB().insert(fo);
+		Context.getInstance().getDaoR().insert(g);
+		Context.getInstance().getDaoR().insert(p);
+		Context.getInstance().getDaoR().insert(b);
+		
+		Context.getInstance().getDaoB().insert(m);
+		Context.getInstance().getDaoB().insert(f);
+		Context.getInstance().getDaoB().insert(sc);
+		Context.getInstance().getDaoB().insert(c);
+		Context.getInstance().getDaoB().insert(fo);*/
 
 		Context.getInstance().getDaoS().update(s);
 
 		em.getTransaction().commit();
-		
 		em.close();
-		
-		
-		
 		Context.getInstance().closeEmf();
 	}
 
