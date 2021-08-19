@@ -1,5 +1,7 @@
 package dao;
 
-public interface IDAOPartie extends IDAO {
+import model.Partie;
+
+public interface IDAOPartie extends IDAO<Partie,Integer> {
 
 }

@@ -4,54 +4,56 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 
-import model.Partie;
+import model.Session;
 import util.Context;
 
-public class DAOPartie implements IDAOPartie {
+public class DAOSession implements IDAOSession{
 
-	public Partie insert(Partie p) {
-		EntityManager em = Context.getInstance().getEmf().createEntityManager();
-		em.getTransaction().begin();
-		em.persist(p);
-		em.getTransaction().commit();
-		em.close();
-		return p;
+	@Override
+	public Session findById(Integer id) {
+		// TODO Auto-generated method stub
+		return null;
 	}
-	public Partie update(Partie p) {
+
+	@Override
+	public List<Session> findAll() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public Session insert(Session s) {
 		EntityManager em = Context.getInstance().getEmf().createEntityManager();
 		em.getTransaction().begin();
-		p = em.merge(p);
+		em.persist(s);
 		em.getTransaction().commit();
 		em.close();
-		return p;
+		return s;
+	}
+	public Session update(Session s) {
+		EntityManager em = Context.getInstance().getEmf().createEntityManager();
+		em.getTransaction().begin();
+		s = em.merge(s);
+		em.getTransaction().commit();
+		em.close();
+		return s;
 	}
 	
 	public void delete(Integer id) {
 		EntityManager em = Context.getInstance().getEmf().createEntityManager();
-		Partie p = em.find(Partie.class,id);
+		Session s = em.find(Session.class,id);
 		em.getTransaction().begin();
-		em.remove(p);
+		em.remove(s);
 		em.getTransaction().commit();
 		em.close();
 	}
 	
-	public void delete(Partie p) {
+	public void delete(Session s) {
 		EntityManager em = Context.getInstance().getEmf().createEntityManager();
 		em.getTransaction().begin();
-		p=em.merge(p);
-		em.remove(p);
+		s=em.merge(s);
+		em.remove(s);
 		em.getTransaction().commit();
 		em.close();
 	}
-	
-	@Override
-	public List findAll() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	@Override
-	public Partie findById(Integer id) {
-		// TODO Auto-generated method stub
-		return null;
-	}	
+
 }

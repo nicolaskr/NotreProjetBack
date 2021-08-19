@@ -8,13 +8,13 @@ import javax.persistence.Entity;
 @Entity
 public class Merveille  extends Batiment{
 	
-	protected Bois b = new Bois(2);
+	/*protected Bois b = new Bois(2);
 	protected Pierre p = new Pierre(2);
 	protected Minerais m = new Minerais(2);
 	protected Charbon c = new Charbon(0);
 	protected Gold g = new Gold(2);
 	protected Fer f = new Fer(2);
-	protected Cuivre cu = new Cuivre(2);
+	protected Cuivre cu = new Cuivre(2);*/
 	
 	private double def;
 	
@@ -22,8 +22,8 @@ public class Merveille  extends Batiment{
 	
 	{
 		super();
-		setNom("merveille");
-		cost.add(b);cost.add(p);cost.add(m);cost.add(c);cost.add(g);cost.add(f);cost.add(cu);
+		//setNom("merveille");
+		//cost.add(b);cost.add(p);cost.add(m);cost.add(c);cost.add(g);cost.add(f);cost.add(cu);
 		setDef(100);
 	}
 

@@ -7,13 +7,13 @@ import javax.persistence.Entity;
 
 @Entity
 public class Catapulte extends Attaque {
-	protected Bois b = new Bois(3);
+	/*protected Bois b = new Bois(3);
 	protected Pierre p = new Pierre(0);
 	protected Minerais m = new Minerais(0);
 	protected Charbon c = new Charbon(0);
 	protected Gold g = new Gold(3);
 	protected Fer f = new Fer(3);
-	protected Cuivre cu = new Cuivre(0);
+	protected Cuivre cu = new Cuivre(0);*/
 	
 	protected double att;
 	protected double def;
@@ -22,8 +22,8 @@ public class Catapulte extends Attaque {
 	
 	{
 		super();
-		setNom("catapulte");
-		cost.add(b);cost.add(p);cost.add(m);cost.add(c);cost.add(g);cost.add(f);cost.add(cu);
+		//setNom("catapulte");
+		//cost.add(b);cost.add(p);cost.add(m);cost.add(c);cost.add(g);cost.add(f);cost.add(cu);
 		setDef(25);
 		setAtt(20);
 	}

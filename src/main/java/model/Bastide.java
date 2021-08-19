@@ -6,7 +6,7 @@ import javax.persistence.Entity;
 public class Bastide extends Defense {
 	
 	public Bastide(){
-		setNom("bastide");
+		//setNom("bastide");
 		setLevel(1);
 		setDef(50);
 	}

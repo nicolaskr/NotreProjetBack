@@ -7,20 +7,20 @@ import javax.persistence.Entity;
 @Entity
 public class Four  extends Transformation {
 	
-	protected Bois b = new Bois(3);
+	/*protected Bois b = new Bois(3);
 	protected Pierre p = new Pierre(3);
 	protected Minerais m = new Minerais(3);
 	protected Charbon c = new Charbon(0);
 	protected Gold g = new Gold(0);
 	protected Fer f = new Fer(0);
-	protected Cuivre cu = new Cuivre(0);
+	protected Cuivre cu = new Cuivre(0);*/
 	
 	
 	public Four() 
 	
 	{
-		setNom("four");
-		cost.add(b);cost.add(p);cost.add(m);cost.add(c);cost.add(g);cost.add(f);cost.add(cu);
+		//setNom("four");
+		//cost.add(b);cost.add(p);cost.add(m);cost.add(c);cost.add(g);cost.add(f);cost.add(cu);
 		setDef(20);
 	}
 
