@@ -81,37 +81,8 @@ public class Test {
 			case 1 : seConnecter();break;
 			case 2 : System.exit(0);break;
 		}
-		
-<<<<<<< refs/remotes/origin/master
-		Bois b = new Bois(2);
-		Pierre p = new Pierre(3);
-		Gold g = new Gold (5);
-		Minerais mn = new Minerais(12);
-		Fer fe = new Fer(50);
-		
-		s.getRessources().add(g);
-		s.getRessources().add(p);
-		s.getRessources().add(b);
-		s.getRessources().add(mn);
-		s.getRessources().add(fe);
 
-		em.getTransaction().begin();
-		
-		/*Context.getInstance().getDaoC().insert(j);
-		Context.getInstance().getDaoP().insert(pa);
-
-		Context.getInstance().getDaoR().insert(g);
-		Context.getInstance().getDaoR().insert(p);
-		Context.getInstance().getDaoR().insert(b);
-		
-		Context.getInstance().getDaoB().insert(m);
-		Context.getInstance().getDaoB().insert(f);
-		Context.getInstance().getDaoB().insert(sc);
-		Context.getInstance().getDaoB().insert(c);
-		Context.getInstance().getDaoB().insert(fo);*/
-=======
 		menuPrincipal();
-
 	}
 	
 	public static void seConnecter() {
@@ -170,7 +141,6 @@ public class Test {
 		System.out.println("3- Se deconnecter");
 
 		int choix = Context.saisieInt("Choisir un menu");
->>>>>>> Main Test
 
 		switch(choix) 
 		{
@@ -188,11 +158,6 @@ public class Test {
 		System.out.println("3- Se deconnecter");
 		int choix = Context.saisieInt("Choisir un menu");
 
-<<<<<<< refs/remotes/origin/master
-		em.getTransaction().commit();
-		em.close();
-		Context.getInstance().closeEmf();
-=======
 		switch(choix) 
 		{
 		case 1 : nouvPartie();break;
@@ -240,8 +205,7 @@ public class Test {
 		
 	public static void loadPartie()
 	{
-		
->>>>>>> Main Test
+
 	}
 
 }
