@@ -88,6 +88,19 @@ public class Test {
 	public static void seConnecter() {
 		String compteCree = Context.saisieString("\nAvez-vous deja cree un compte ? (y/n)");
 		
+
+		Catapulte c = new Catapulte();
+		Merveille m = new Merveille();
+		Scierie sc = new Scierie();
+		Four f = new Four();
+		Fonderie fo = new Fonderie();
+
+//		s.getConstructions().add(c);
+//		s.getConstructions().add(m);
+//		s.getConstructions().add(f);
+//		s.getConstructions().add(sc);
+//		s.getConstructions().add(fo);
+
 		if(compteCree.equalsIgnoreCase("y"))
 		{
 			String login = Context.saisieString("\nSaisir login");
@@ -113,7 +126,7 @@ public class Test {
 			String password = Context.saisieString("\nSaisissez votre mot de passe : ");
 			String prenom = Context.saisieString("\nVeuillez indiquez votre prenom : ");
 			String nom = Context.saisieString("\nVeuillez indiquez votre nom : ");
-			String surnom = Context.saisieString("\nChoisissez le nom sous lequel vous souhaitez être reconnu durant la partie : ");
+			String surnom = Context.saisieString("\nChoisissez le nom sous lequel vous souhaitez ï¿½tre reconnu durant la partie : ");
 			Joueur j = new Joueur(login, password, prenom, nom, surnom);
 			Context.getInstance().getDaoC().insert(j);
 			
@@ -172,13 +185,14 @@ public class Test {
 		int nbJoueur = Context.saisieInt("\nChoisissez le nombre de joueurs (entre 2 et 4)");
 		//int nbTour = saisieInt("\nChoisissez le nombre de tours pour votre partie (entre 5 et 10)");
 		int nbTour = 100;
+
 		
 		connected.toString();
 		
 		Partie nouvPartie = new Partie();
 		Partie p = Context.getInstance().getDaoP().insert(nouvPartie);
 		p.initPartie(nbJoueur, connected,p);
-		// session crée dans le initPartie
+		// session crï¿½e dans le initPartie
 //		Session s = new Session(false, p,connected);
 //		Context.getInstance().getDaoS().insert(s);
 		
@@ -203,6 +217,25 @@ public class Test {
 		}
 	}
 		
+
+		Context.getInstance().getDaoB().insert(m);
+		Context.getInstance().getDaoB().insert(f);
+		Context.getInstance().getDaoB().insert(sc);
+		Context.getInstance().getDaoB().insert(c);
+		Context.getInstance().getDaoB().insert(fo);*/
+
+		Context.getInstance().getDaoS().update(s);
+		
+
+		em.getTransaction().commit();
+		
+		em.close();
+		
+		s.construitBastide();
+		System.out.println(s.getConstructions());
+		
+		Context.getInstance().closeEmf();
+
 	public static void loadPartie()
 	{
 

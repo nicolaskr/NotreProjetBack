@@ -95,8 +95,7 @@ public class Partie {
 				System.out.println("\nJoueur 1 : ");
 				System.out.println("\nBienvenue "+connected.getPrenom()+" "+connected.getNom()+", vous etes le Joueur 1, quelle chance ! ");
 				System.out.println("\nDans cette partie vous serez "+connected.getSurnom());
-	
-				Context.getInstance().getDaoS().update(session1);
+					
 				
 				Bois b = new Bois(0);
 				Pierre pi = new Pierre(0);
@@ -109,6 +108,7 @@ public class Partie {
 				stock.add(b);stock.add(pi);stock.add(m);stock.add(ch);stock.add(g);stock.add(f);stock.add(cu);
 				session1.setRessources(stock);
 				session1=Context.getInstance().getDaoS().update(session1);
+
 				sessions.add(session1);
 
 			}
