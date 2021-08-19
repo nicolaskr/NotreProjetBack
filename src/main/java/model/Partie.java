@@ -16,13 +16,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
-import metier.Bois;
-import metier.Charbon;
-import metier.Cuivre;
-import metier.Fer;
-import metier.Gold;
-import metier.Minerais;
-import metier.Pierre;
+
 import model.*;
 import util.Context;
 
