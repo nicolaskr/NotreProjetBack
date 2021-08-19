@@ -8,8 +8,8 @@ import javax.persistence.Entity;
 @Entity
 public class Scierie extends Production{
 	protected transient Bois b = new Bois(0);
-	protected transient Pierre p = new Pierre(3);
-	protected transient Minerais m = new Minerais(3);
+	protected transient Pierre p = new Pierre(8);
+	protected transient Minerais m = new Minerais(8);
 	protected transient Charbon c = new Charbon(0);
 	protected transient Gold g = new Gold(0);
 	protected transient Fer f = new Fer(0);
@@ -19,7 +19,7 @@ public class Scierie extends Production{
 	{
 		setNom("scierie");
 		cost.add(b);cost.add(p);cost.add(m);cost.add(c);cost.add(g);cost.add(f);cost.add(cu);
-		setDef(20);
+		setDef(25);
 	}
 
 	public Scierie(String nom, int level, double def){

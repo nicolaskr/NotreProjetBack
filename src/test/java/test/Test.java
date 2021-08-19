@@ -81,9 +81,8 @@ public class Test {
 			case 1 : seConnecter();break;
 			case 2 : System.exit(0);break;
 		}
-		
-		menuPrincipal();
 
+		menuPrincipal();
 	}
 	
 	public static void seConnecter() {
