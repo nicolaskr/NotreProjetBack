@@ -34,21 +34,29 @@ public class Test {
 		Bois b = new Bois(2);
 		Pierre p = new Pierre(3);
 		Gold g = new Gold (5);
+		Minerais mn = new Minerais(12);
+		Fer fe = new Fer(50);
 		
 		s.getStock().add(g);
 		s.getStock().add(p);
 		s.getStock().add(b);
+		s.getStock().add(mn);
+		s.getStock().add(fe);
 		
 		em.getTransaction().begin();
 		
-		Context.getInstance().getDaoC().insert(j);
+		/*Context.getInstance().getDaoC().insert(j);
 		Context.getInstance().getDaoP().insert(pa);
 
+		Context.getInstance().getDaoR().insert(g);
+		Context.getInstance().getDaoR().insert(p);
+		Context.getInstance().getDaoR().insert(b);
+		
 		Context.getInstance().getDaoB().insert(m);
 		Context.getInstance().getDaoB().insert(f);
 		Context.getInstance().getDaoB().insert(sc);
 		Context.getInstance().getDaoB().insert(c);
-		Context.getInstance().getDaoB().insert(fo);
+		Context.getInstance().getDaoB().insert(fo);*/
 				
 		Context.getInstance().getDaoS().update(s);
 
