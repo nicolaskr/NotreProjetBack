@@ -8,22 +8,20 @@ import javax.persistence.Entity;
 @Entity
 public class Merveille  extends Batiment{
 	
-	/*protected Bois b = new Bois(2);
-	protected Pierre p = new Pierre(2);
-	protected Minerais m = new Minerais(2);
-	protected Charbon c = new Charbon(0);
-	protected Gold g = new Gold(2);
-	protected Fer f = new Fer(2);
-	protected Cuivre cu = new Cuivre(2);*/
-	
-	private double def;
+	protected transient Bois b = new Bois(2);
+	protected transient Pierre p = new Pierre(2);
+	protected transient Minerais m = new Minerais(2);
+	protected transient Charbon c = new Charbon(0);
+	protected transient Gold g = new Gold(2);
+	protected transient Fer f = new Fer(2);
+	protected transient Cuivre cu = new Cuivre(2);
 	
 	public Merveille() 
 	
 	{
 		super();
-		//setNom("merveille");
-		//cost.add(b);cost.add(p);cost.add(m);cost.add(c);cost.add(g);cost.add(f);cost.add(cu);
+		setNom("merveille");
+		cost.add(b);cost.add(p);cost.add(m);cost.add(c);cost.add(g);cost.add(f);cost.add(cu);
 		setDef(100);
 	}
 
@@ -31,9 +29,9 @@ public class Merveille  extends Batiment{
 		super(nom, level, def);
 	}
 	
-	public Merveille(int id,int idCompte, int idPartie,String nom, int level, double def)
+	public Merveille(int id, String nom, int level, double def)
 	{
-		super(id,idCompte, idPartie,nom, level, def);
+		super(id, nom, level, def);
 		cost.add(b);cost.add(p);cost.add(m);cost.add(c);cost.add(g);cost.add(f);cost.add(cu);
 	}
 	

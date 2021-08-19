@@ -16,7 +16,7 @@ import javax.persistence.InheritanceType;
 @DiscriminatorColumn(name="Batiment")
 public abstract class Batiment {
 
-	//protected String nom;
+	protected transient String nom;
 	protected double def;
 	protected double att=0;
 	protected transient List <Ressource> cost= new ArrayList <Ressource>();
@@ -27,13 +27,13 @@ public abstract class Batiment {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	protected int id;
 	
-//	protected Bois b = new Bois(0);
-//	protected Pierre p = new Pierre(0);
-//	protected Minerais m = new Minerais(0);
-//	protected Charbon c = new Charbon(0);
-//	protected Gold g = new Gold(0);
-//	protected Fer f = new Fer(0);
-//	protected Cuivre cu = new Cuivre(0);
+	protected transient Bois b = new Bois(0);
+	protected transient Pierre p = new Pierre(0);
+	protected transient Minerais m = new Minerais(0);
+	protected transient Charbon c = new Charbon(0);
+	protected transient Gold g = new Gold(0);
+	protected transient Fer f = new Fer(0);
+	protected transient Cuivre cu = new Cuivre(0);
 		
 	public Batiment() {
 		//cost.add(b);cost.add(p);cost.add(m);cost.add(c);cost.add(g);cost.add(f);cost.add(cu);
@@ -46,27 +46,23 @@ public abstract class Batiment {
 		this.def = def;
 	}
 	
-	public Batiment(int id, int idCompte, int idPartie,String nom, int level, double def,double att)
+	public Batiment(int id, String nom, int level, double def,double att)
 	{
 		this.id = id;
-		this.idCompte = idCompte;
-		this.idPartie = idPartie;
 		this.nom = nom;
 		this.level = level;
 		this.def = def;
 		this.att = att;
 	}
 	
-	public Batiment(int id, int idCompte, int idPartie,String nom, int level, double def)
+	public Batiment(int id, String nom, int level, double def)
 	{
 		this.id = id;
-		this.idCompte = idCompte;
-		this.idPartie = idPartie;
 		this.nom = nom;
 		this.level = level;
 		this.def = def;
 	}
-	
+
 	public String getNom() {
 		return nom;
 	}
@@ -75,7 +71,6 @@ public abstract class Batiment {
 	public void setNom(String nom) {
 		this.nom = nom;
 	}
-
 
 	public double getDef() {
 		return def;
@@ -121,25 +116,6 @@ public abstract class Batiment {
 	public void setLevel(int level) {
 		this.level = level;
 	}
-
-	public int getIdPartie() {
-		return idPartie;
-	}
-
-
-	public void setIdPartie(int idPartie) {
-		this.idPartie = idPartie;
-	}
-
-	public int getIdCompte() {
-		return idCompte;
-	}
-
-
-	public void setIdCompte(int idCompte) {
-		this.idCompte = idCompte;
-	}
-
 
 	public void upgrade() 
 	{		

@@ -7,22 +7,19 @@ import javax.persistence.Entity;
 
 @Entity
 public class Muraille  extends Defense{
-	/*protected Bois b = new Bois(3);
-	protected Pierre p = new Pierre(3);
-	protected Minerais m = new Minerais(0);
-	protected Charbon c = new Charbon(0);
-	protected Gold g = new Gold(0);
-	protected Fer f = new Fer(3);
-	protected Cuivre cu = new Cuivre(0);*/
-	
-	private double def;
-	
-	
+	protected transient Bois b = new Bois(3);
+	protected transient Pierre p = new Pierre(3);
+	protected transient Minerais m = new Minerais(0);
+	protected transient Charbon c = new Charbon(0);
+	protected transient Gold g = new Gold(0);
+	protected transient Fer f = new Fer(3);
+	protected transient Cuivre cu = new Cuivre(0);
+
 	public Muraille() 
 	
 	{
-		//setNom("muraille");
-		//cost.add(b);cost.add(p);cost.add(m);cost.add(c);cost.add(g);cost.add(f);cost.add(cu);
+		setNom("muraille");
+		cost.add(b);cost.add(p);cost.add(m);cost.add(c);cost.add(g);cost.add(f);cost.add(cu);
 		setDef(100);
 	}
 
@@ -32,9 +29,9 @@ public class Muraille  extends Defense{
 		
 	}
 	
-	public Muraille(int id,int idCompte, int idPartie,String nom, int level, double def)
+	public Muraille(int id, String nom, int level, double def)
 	{
-		super(id,idCompte, idPartie,nom, level, def);
+		super(id, nom, level, def);
 		cost.add(b);cost.add(p);cost.add(m);cost.add(c);cost.add(g);cost.add(f);cost.add(cu);
 	}
 	

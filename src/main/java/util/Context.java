@@ -63,11 +63,12 @@ public class Context {
 		return sc.nextInt();
 	}
 	
-	public String saisieString(String msg) 
+	public String saisieString(String msg)
 	{
 		Scanner sc = new Scanner(System.in);
 		System.out.println(msg);
 		return sc.nextLine();
 	}
+
 		
 }

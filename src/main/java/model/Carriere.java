@@ -7,21 +7,19 @@ import javax.persistence.Entity;
 
 @Entity
 public class Carriere extends Production {
-	/*protected Bois b = new Bois(3);
-	protected Pierre p = new Pierre(0);
-	protected Minerais m = new Minerais(3);
-	protected Charbon c = new Charbon(0);
-	protected Gold g = new Gold(0);
-	protected Fer f = new Fer(0);
-	protected Cuivre cu = new Cuivre(0);*/
-	
-	private int def;
+	protected transient Bois b = new Bois(3);
+	protected transient Pierre p = new Pierre(0);
+	protected transient Minerais m = new Minerais(3);
+	protected transient Charbon c = new Charbon(0);
+	protected transient Gold g = new Gold(0);
+	protected transient Fer f = new Fer(0);
+	protected transient Cuivre cu = new Cuivre(0);
 	
 	public Carriere() 
 	
 	{
-		//setNom("carriere");
-		//cost.add(b);cost.add(p);cost.add(m);cost.add(c);cost.add(g);cost.add(f);cost.add(cu);
+		setNom("carriere");
+		cost.add(b);cost.add(p);cost.add(m);cost.add(c);cost.add(g);cost.add(f);cost.add(cu);
 		setDef(20);
 	}
 
@@ -29,9 +27,9 @@ public class Carriere extends Production {
 		super(nom, level, def);
 	}
 	
-	public Carriere(int id,int idCompte, int idPartie,String nom, int level, double def)
+	public Carriere(int id, String nom, int level, double def)
 	{
-		super(id,idCompte, idPartie,nom, level, def);
+		super(id, nom, level, def);
 	}
 	
 	

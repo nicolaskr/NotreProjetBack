@@ -22,7 +22,8 @@ import util.Context;
 
 @Entity
 public class Session {
-	
+
+
 	@EmbeddedId 
 	private SessionId id;
 	
@@ -35,22 +36,23 @@ public class Session {
 	private int def;
 	private int att;
 	
-	@ManyToOne
+	@ManyToOne(cascade = {CascadeType.MERGE,CascadeType.PERSIST})
     @MapsId("idPartie")
     private Partie partie;
 	
-	@ManyToOne
+	@ManyToOne(cascade = {CascadeType.MERGE,CascadeType.PERSIST})
     @MapsId("idCompte")
     private Compte compte;
 				
-	@ManyToMany
-	@JoinTable(name="liste_ressources",inverseJoinColumns=@JoinColumn(name="ressources"))
-	protected List<Ressource> ressources = new ArrayList <Ressource>(); //précédement stock
 	
-	@ManyToMany
+	@ManyToMany(cascade = {CascadeType.MERGE,CascadeType.PERSIST})
+	@JoinTable(name="liste_ressource",inverseJoinColumns=@JoinColumn(name="ressources"))
+	protected List<Ressource> ressources = new ArrayList <Ressource>();
+	
+	@ManyToMany(cascade = {CascadeType.MERGE,CascadeType.PERSIST})
 	@JoinTable(name="liste_batiments",inverseJoinColumns=@JoinColumn(name="batiments"))
-	protected List<Batiment> constructions = new ArrayList <Batiment>(); //précédement construction
-		
+	protected List<Batiment> constructions = new ArrayList <Batiment>();
+			
 	public Session() {}
 		
 	public Session(boolean aJoueLeTours, Partie partie, Compte compte) {	
