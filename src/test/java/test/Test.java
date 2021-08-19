@@ -34,7 +34,7 @@ public class Test {
 		
 		Context.getInstance().getDaoC().insert(j);
 		Context.getInstance().getDaoP().insert(pa);
-		Context.getInstance().getDaoS().insert(s);
+		Context.getInstance().getDaoS().update(s);
 
 		em.getTransaction().commit();
 		em.close();
