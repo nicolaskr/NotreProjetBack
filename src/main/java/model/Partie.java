@@ -1,9 +1,15 @@
 package model;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Partie {
@@ -11,22 +17,27 @@ public class Partie {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	private int nbr_de_tour;
-	private boolean partie_en_cours;
+	@Column(name="nbrDeTour")
+	private int nbrDeTour;
+	@Column(name="partieEnCours")
+	private boolean partieEnCours;
 		
+	@OneToMany
+	private List<Session> sessions = new ArrayList<Session>();
+	
 	public Partie() {}
 
-	public Partie(int nbr_de_tour, boolean partie_en_cours) {
+	public Partie(int nbrDeTour, boolean partieEnCours) {
 		super();
-		this.nbr_de_tour = nbr_de_tour;
-		this.partie_en_cours = partie_en_cours;
+		this.nbrDeTour = nbrDeTour;
+		this.partieEnCours = partieEnCours;
 	}
 
-	public Partie(int id, int nbr_de_tour, boolean partie_en_cours) {
+	public Partie(int id, int nbrDeTour, boolean partieEnCours) {
 		super();
 		this.id = id;
-		this.nbr_de_tour = nbr_de_tour;
-		this.partie_en_cours = partie_en_cours;
+		this.nbrDeTour = nbrDeTour;
+		this.partieEnCours = partieEnCours;
 	}
 
 	public int getId() {
@@ -37,25 +48,25 @@ public class Partie {
 		this.id = id;
 	}
 
-	public int getNbr_de_tour() {
-		return nbr_de_tour;
+	public int getnbrDeTour() {
+		return nbrDeTour;
 	}
 
-	public void setNbr_de_tour(int nbr_de_tour) {
-		this.nbr_de_tour = nbr_de_tour;
+	public void setnbrDeTour(int nbrDeTour) {
+		this.nbrDeTour = nbrDeTour;
 	}
 
-	public boolean isPartie_en_cours() {
-		return partie_en_cours;
+	public boolean ispartieEnCours() {
+		return partieEnCours;
 	}
 
-	public void setPartie_en_cours(boolean partie_en_cours) {
-		this.partie_en_cours = partie_en_cours;
+	public void setpartieEnCours(boolean partieEnCours) {
+		this.partieEnCours = partieEnCours;
 	}
 
 	@Override
 	public String toString() {
-		return "Partie [id=" + id + ", nbr_de_tour=" + nbr_de_tour + ", partie_en_cours=" + partie_en_cours + "]";
+		return "Partie [id=" + id + ", nbrDeTour=" + nbrDeTour + ", partieEnCours=" + partieEnCours + "]";
 	}
 	
 }
