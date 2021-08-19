@@ -16,16 +16,18 @@ import dao.DAORessource;
 @DiscriminatorValue("joueur")
 public class Joueur extends Compte{
 	
-	private Bois b = new Bois(0);
-	private Pierre p = new Pierre(0);
-	private Minerais m = new Minerais(0);
-	private Charbon c = new Charbon(0);
-	private Gold g = new Gold(0);
-	private Fer f = new Fer(0);
-	private Cuivre cu = new Cuivre(0);
+//	private Bois b = new Bois(0);
+//	private Pierre p = new Pierre(0);
+//	private Minerais m = new Minerais(0);
+//	private Charbon c = new Charbon(0);
+//	private Gold g = new Gold(0);
+//	private Fer f = new Fer(0);
+//	private Cuivre cu = new Cuivre(0);
+	
 	@ManyToMany
 	protected List<Ressource> stock = new ArrayList <Ressource>();
 	
+	@ManyToMany
 	protected List<Batiment> construction = new ArrayList <Batiment>();
 	
 	private int def = 0;
@@ -51,9 +53,7 @@ public class Joueur extends Compte{
 		System.out.println(msg);
 		return sc.nextLine();
 	}
-	
-	
-	
+		
 	public Joueur() {
 	}
 

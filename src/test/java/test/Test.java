@@ -15,6 +15,10 @@ public class Test {
 
 		EntityManager em = Context.getInstance().getEmf().createEntityManager();
 		
+		Joueur j = new Joueur("login", "pass");
+		Partie pa = new Partie(100, true);
+		Session s = new Session(false, pa, j);
+		
 		Bois b = new Bois(2);
 		Pierre p = new Pierre(3);
 		Gold g = new Gold (5);
@@ -28,6 +32,9 @@ public class Test {
 		em.getTransaction().begin();
 		
 		em.persist(stock);
+		em.persist(j);
+		em.persist(pa);
+		em.persist(s);
 
 
 		em.getTransaction().commit();

@@ -14,6 +14,7 @@ import dao.IDAOCompte;
 import model.Admin;
 import model.Compte;
 import model.Joueur;
+import model.Session;
 import util.Context;
 
 public class DAOCompte implements IDAOCompte{

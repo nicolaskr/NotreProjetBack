@@ -17,8 +17,18 @@ public class Session {
 	@ManyToOne
     @MapsId("idPartie")
     private Partie partie;
+	
+	@ManyToOne
+    @MapsId("idCompte")
+    private Compte compte;
 				
 	public Session() {}
+		
+	public Session(boolean aJoueLeTours, Partie partie, Compte compte) {	
+		this.aJoueLeTours = aJoueLeTours;
+		this.partie = partie;
+		this.compte = compte;
+	}
 
 	public SessionId getId() {
 		return id;
@@ -34,6 +44,22 @@ public class Session {
 
 	public void setaJoueLeTours(boolean aJoueLeTours) {
 		this.aJoueLeTours = aJoueLeTours;
+	}
+		
+	public Partie getPartie() {
+		return partie;
+	}
+
+	public void setPartie(Partie partie) {
+		this.partie = partie;
+	}
+
+	public Compte getCompte() {
+		return compte;
+	}
+
+	public void setCompte(Compte compte) {
+		this.compte = compte;
 	}
 
 	@Override
