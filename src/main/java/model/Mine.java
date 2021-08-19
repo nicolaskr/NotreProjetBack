@@ -7,21 +7,21 @@ import javax.persistence.Entity;
 
 @Entity
 public class Mine  extends Production {
-	protected Bois b = new Bois(3);
+	/*protected Bois b = new Bois(3);
 	protected Pierre p = new Pierre(3);
 	protected Minerais m = new Minerais(0);
 	protected Charbon c = new Charbon(0);
 	protected Gold g = new Gold(0);
 	protected Fer f = new Fer(0);
-	protected Cuivre cu = new Cuivre(0);
+	protected Cuivre cu = new Cuivre(0);*/
 	
 	private double def;
 	
 	public Mine() 
 	
 	{
-		setNom("mine");
-		cost.add(b);cost.add(p);cost.add(m);cost.add(c);cost.add(g);cost.add(f);cost.add(cu);
+		//setNom("mine");
+		//cost.add(b);cost.add(p);cost.add(m);cost.add(c);cost.add(g);cost.add(f);cost.add(cu);
 		setDef(20);
 	}
 

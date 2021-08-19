@@ -22,8 +22,8 @@ public class Partie {
 	@Column(name="partieEnCours")
 	private boolean partieEnCours;
 		
-	@OneToMany
-	private List<Session> sessions = new ArrayList<Session>();
+	//@OneToMany
+	//private List<Session> sessions = new ArrayList<Session>();
 	
 	public Partie() {}
 

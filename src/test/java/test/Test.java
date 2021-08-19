@@ -15,11 +15,12 @@ public class Test {
 
 		EntityManager em = Context.getInstance().getEmf().createEntityManager();
 		
-		Joueur j = new Joueur("login", "pass");
+		Joueur j = new Joueur("login","pass");
 		Partie pa = new Partie(100, true);
 		Session s = new Session(false, pa, j);
+	
 		
-		Bois b = new Bois(2);
+	/*	Bois b = new Bois(2);
 		Pierre p = new Pierre(3);
 		Gold g = new Gold (5);
 		
@@ -27,15 +28,13 @@ public class Test {
 		
 		stock.add(g);
 		stock.add(p);
-		stock.add(b);
+		stock.add(b);*/
 		
 		em.getTransaction().begin();
 		
-		em.persist(stock);
-		em.persist(j);
-		em.persist(pa);
-		em.persist(s);
-
+		Context.getInstance().getDaoC().insert(j);
+		Context.getInstance().getDaoP().insert(pa);
+		Context.getInstance().getDaoS().insert(s);
 
 		em.getTransaction().commit();
 		em.close();

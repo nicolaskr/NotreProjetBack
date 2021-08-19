@@ -24,12 +24,6 @@ public class Joueur extends Compte{
 //	private Fer f = new Fer(0);
 //	private Cuivre cu = new Cuivre(0);
 	
-	@ManyToMany
-	protected List<Ressource> stock = new ArrayList <Ressource>();
-	
-	@ManyToMany
-	protected List<Batiment> construction = new ArrayList <Batiment>();
-	
 	private int def = 0;
 	private int att = 0;
 	private boolean tourEnCours;
@@ -96,22 +90,6 @@ public class Joueur extends Compte{
 		this.construction = actuDef();
 	}
 	
-	public List<Ressource> getStock() {
-		return stock;
-	}
-
-	public void setStock(List<Ressource> stock) {
-		this.stock = stock;
-	}
-
-	public List<Batiment> getConstruction() {
-		return construction;
-	}
-
-	public void setConstruction(List<Batiment> construction) {
-		this.construction = construction;
-	}
-
 	public int getDef() {
 		return def;
 	}

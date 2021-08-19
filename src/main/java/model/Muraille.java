@@ -7,13 +7,13 @@ import javax.persistence.Entity;
 
 @Entity
 public class Muraille  extends Defense{
-	protected Bois b = new Bois(3);
+	/*protected Bois b = new Bois(3);
 	protected Pierre p = new Pierre(3);
 	protected Minerais m = new Minerais(0);
 	protected Charbon c = new Charbon(0);
 	protected Gold g = new Gold(0);
 	protected Fer f = new Fer(3);
-	protected Cuivre cu = new Cuivre(0);
+	protected Cuivre cu = new Cuivre(0);*/
 	
 	private double def;
 	
@@ -21,8 +21,8 @@ public class Muraille  extends Defense{
 	public Muraille() 
 	
 	{
-		setNom("muraille");
-		cost.add(b);cost.add(p);cost.add(m);cost.add(c);cost.add(g);cost.add(f);cost.add(cu);
+		//setNom("muraille");
+		//cost.add(b);cost.add(p);cost.add(m);cost.add(c);cost.add(g);cost.add(f);cost.add(cu);
 		setDef(100);
 	}
 

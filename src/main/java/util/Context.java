@@ -7,14 +7,16 @@ import dao.DAOBatiment;
 import dao.DAOCompte;
 import dao.DAOPartie;
 import dao.DAORessource;
+import dao.DAOSession;
 
 public class Context {
 
 	private static Context _instance=null;
-	private static DAOBatiment daoB;
-	private static DAOCompte daoC;
-	private static DAOPartie daoP;
-	private static DAORessource daoR;
+	private static DAOBatiment daoB = new DAOBatiment();
+	private static DAOCompte daoC = new DAOCompte();
+	private static DAOPartie daoP = new DAOPartie();
+	private static DAORessource daoR = new DAORessource();
+	private static DAOSession daoS = new DAOSession();
 	private EntityManagerFactory emf = Persistence.createEntityManagerFactory("NotreProjetBack");
 		
 	private Context() {}	
@@ -42,6 +44,10 @@ public class Context {
 	
 	public DAORessource getDaoR() {
 		return daoR;
+	}
+	
+	public DAOSession getDaoS() {
+		return daoS;
 	}
 	
 	public void closeEmf() {

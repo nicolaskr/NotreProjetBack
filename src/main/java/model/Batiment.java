@@ -16,13 +16,13 @@ import javax.persistence.InheritanceType;
 @DiscriminatorColumn(name="Batiment")
 public abstract class Batiment {
 
-	protected String nom;
+	//protected String nom;
 	protected double def;
 	protected double att=0;
-	protected List <Ressource> cost= new ArrayList <Ressource>();
+	protected transient List <Ressource> cost= new ArrayList <Ressource>();
 	protected int level=1;
-	protected int idCompte;
-	protected int idPartie;
+	//protected int idCompte;
+	//protected int idPartie;
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	protected int id;

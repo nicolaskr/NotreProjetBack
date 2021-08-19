@@ -13,7 +13,7 @@ import javax.persistence.Query;
 import model.*;
 import util.Context;
 
-public class DAOBatiment {
+public class DAOBatiment implements IDAOBatiment{
 	
 	public List<Batiment> findAllByIdCompteIdPartie(Integer idCompte, Integer idPartie)
 	{
@@ -85,5 +85,17 @@ public class DAOBatiment {
 		em.remove(b);
 		em.getTransaction().commit();
 		em.close();
+	}
+
+	@Override
+	public Batiment findById(Integer id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Batiment> findAll() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

@@ -13,7 +13,7 @@ import javax.persistence.InheritanceType;
 import javax.persistence.OneToMany;
 
 @Entity
-@Inheritance(strategy = InheritanceType.JOINED)
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name="typeCompte")
 public abstract class Compte {
 	
@@ -22,13 +22,13 @@ public abstract class Compte {
 	protected int id;
 	protected String login;
 	protected String password;
-	protected TypeCompte typeCompte;
+	//protected TypeCompte typeCompte;
 	protected String prenom;
 	protected String nom;
 	protected String surnom;
 	
-	@OneToMany
-	private List<Session> sessions = new ArrayList<Session>();
+	//@OneToMany
+	//private List<Session> sessions = new ArrayList<Session>();
 		
 	public Compte() {
 		super();

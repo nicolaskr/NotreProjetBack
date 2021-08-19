@@ -7,20 +7,20 @@ import javax.persistence.Entity;
 
 @Entity
 public class Fonderie  extends Transformation {
-	protected Bois b = new Bois(0);
+	/*protected Bois b = new Bois(0);
 	protected Pierre p = new Pierre(3);
 	protected Minerais m = new Minerais(0);
 	protected Charbon c = new Charbon(6);
 	protected Gold g = new Gold(0);
 	protected Fer f = new Fer(0);
-	protected Cuivre cu = new Cuivre(0);
+	protected Cuivre cu = new Cuivre(0);*/
 	
 	
 	public Fonderie() 
 	
 	{
-		setNom("fonderie");
-		cost.add(b);cost.add(p);cost.add(m);cost.add(c);cost.add(g);cost.add(f);cost.add(cu);
+		//setNom("fonderie");
+		//cost.add(b);cost.add(p);cost.add(m);cost.add(c);cost.add(g);cost.add(f);cost.add(cu);
 		setDef(20);
 	}
 
