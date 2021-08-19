@@ -73,6 +73,10 @@ public class DAORessource implements IDAORessource {
 		em.close();
 		return ressources;
 	}
+	
+	
+	
+	
 }
 
 	
