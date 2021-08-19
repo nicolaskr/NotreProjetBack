@@ -51,10 +51,20 @@ public class Joueur extends Compte{
 	public Joueur() {
 	}
 
+//	public Joueur (int id, String login, String password, String prenom, String nom, String surnom)
+//	{
+//		super(id,login,password, TypeCompte.Joueur,prenom, nom, surnom);
+//		stock.add(b);stock.add(p);stock.add(m);stock.add(c);stock.add(g);stock.add(f);stock.add(cu);
+//		//Bastide bastide = new Bastide();
+//		//this.construction.add(bastide);
+//		//this.construction = actuDef();
+//		//aCommence = false;
+//	}
+	
 	public Joueur (int id, String login, String password, String prenom, String nom, String surnom)
 	{
-		super(id,login,password, TypeCompte.Joueur,prenom, nom, surnom);
-		stock.add(b);stock.add(p);stock.add(m);stock.add(c);stock.add(g);stock.add(f);stock.add(cu);
+		super(id,login,password,prenom, nom, surnom);
+		//stock.add(b);stock.add(p);stock.add(m);stock.add(c);stock.add(g);stock.add(f);stock.add(cu);
 		//Bastide bastide = new Bastide();
 		//this.construction.add(bastide);
 		//this.construction = actuDef();
@@ -67,9 +77,18 @@ public class Joueur extends Compte{
 		aCommence = false;
 	}
 	
+//	public Joueur (String login, String password, String prenom, String nom, String surnom)
+//	{
+//		super(login,password, TypeCompte.Joueur, prenom, nom, surnom);
+//		//Bastide bastide = new Bastide();
+//		//this.construction.add(bastide);
+//		//this.construction = actuDef();
+//		//aCommence = false;
+//	}
+	
 	public Joueur (String login, String password, String prenom, String nom, String surnom)
 	{
-		super(login,password, TypeCompte.Joueur, prenom, nom, surnom);
+		super(login,password, prenom, nom, surnom);
 		//Bastide bastide = new Bastide();
 		//this.construction.add(bastide);
 		//this.construction = actuDef();

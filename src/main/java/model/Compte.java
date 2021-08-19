@@ -34,15 +34,15 @@ public abstract class Compte {
 		super();
 	}
 
-	public Compte(int id, String login, String password, TypeCompte typeCompte, String prenom, String nom, String surnom) {
-		this.id = id;
-		this.login = login;
-		this.password = password;
-		this.typeCompte = typeCompte;
-		this.prenom = prenom;
-		this.nom = nom;
-		this.surnom = surnom;
-	}
+//	public Compte(int id, String login, String password, TypeCompte typeCompte, String prenom, String nom, String surnom) {
+//		this.id = id;
+//		this.login = login;
+//		this.password = password;
+//		this.typeCompte = typeCompte;
+//		this.prenom = prenom;
+//		this.nom = nom;
+//		this.surnom = surnom;
+//	}
 	
 	public Compte(int id, String login, String password, String prenom, String nom, String surnom) {
 		this.id = id;
@@ -53,10 +53,18 @@ public abstract class Compte {
 		this.surnom = surnom;
 	}
 		
-	public Compte(String login, String password, TypeCompte typeCompte, String prenom, String nom, String surnom) {
+//	public Compte(String login, String password, TypeCompte typeCompte, String prenom, String nom, String surnom) {
+//		this.login = login;
+//		this.password = password;
+//		this.typeCompte = typeCompte;
+//		this.prenom = prenom;
+//		this.nom = nom;
+//		this.surnom = surnom;
+//	}
+	
+	public Compte(String login, String password, String prenom, String nom, String surnom) {
 		this.login = login;
 		this.password = password;
-		this.typeCompte = typeCompte;
 		this.prenom = prenom;
 		this.nom = nom;
 		this.surnom = surnom;
@@ -97,13 +105,13 @@ public abstract class Compte {
 		this.password = password;
 	}
 	
-	public TypeCompte getTypeCompte() {
-		return typeCompte;
-	}
-	
-	public void setTypeCompte(TypeCompte typeCompte) {
-		this.typeCompte = typeCompte;
-	}
+//	public TypeCompte getTypeCompte() {
+//		return typeCompte;
+//	}
+//	
+//	public void setTypeCompte(TypeCompte typeCompte) {
+//		this.typeCompte = typeCompte;
+//	}
 	
 	public String getPrenom() {
 		return prenom;
@@ -131,8 +139,8 @@ public abstract class Compte {
 
 	@Override
 	public String toString() {
-		return "Compte [id=" + id + ", login=" + login + ", password=" + password + ", typeCompte=" + typeCompte
-				+ ", prenom=" + prenom + ", nom=" + nom + ", surnom=" + surnom + "]";
+		return "Compte [id=" + id + ", login=" + login + ", password=" + password + ", prenom=" + prenom + ", nom="
+				+ nom + ", surnom=" + surnom + "]";
 	}
 
 }
