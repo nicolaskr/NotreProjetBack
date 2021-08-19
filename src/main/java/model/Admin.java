@@ -18,14 +18,24 @@ public class Admin extends Compte{
 		super(id,login, password);
 	}
 	
+//	public Admin (int id, String login, String password, String prenom, String nom, String surnom)
+//	{
+//		super(id,login,password,TypeCompte.Admin, prenom, nom, surnom);
+//	}
+	
 	public Admin (int id, String login, String password, String prenom, String nom, String surnom)
 	{
-		super(id,login,password,TypeCompte.Admin, prenom, nom, surnom);
+		super(id,login,password, prenom, nom, surnom);
 	}
+	
+//	public Admin (String login, String password, String prenom, String nom, String surnom)
+//	{
+//		super(login,password,TypeCompte.Admin, prenom, nom, surnom);
+//	}
 	
 	public Admin (String login, String password, String prenom, String nom, String surnom)
 	{
-		super(login,password,TypeCompte.Admin, prenom, nom, surnom);
+		super(login,password, prenom, nom, surnom);
 	}
 		
 	@Override
