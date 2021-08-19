@@ -27,8 +27,8 @@ public abstract class Compte {
 	protected String nom;
 	protected String surnom;
 	
-	//@OneToMany
-	//private List<Session> sessions = new ArrayList<Session>();
+//	@OneToMany
+//	private List<Session> sessions = new ArrayList<Session>();
 		
 	public Compte() {
 		super();

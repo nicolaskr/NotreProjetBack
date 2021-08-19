@@ -1,5 +1,7 @@
 package util;
 
+import java.util.Scanner;
+
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
@@ -52,6 +54,20 @@ public class Context {
 	
 	public void closeEmf() {
 		emf.close();
+	}
+	
+	public int saisieInt(String msg) 
+	{
+		Scanner sc = new Scanner(System.in);
+		System.out.println(msg);
+		return sc.nextInt();
+	}
+	
+	public String saisieString(String msg) 
+	{
+		Scanner sc = new Scanner(System.in);
+		System.out.println(msg);
+		return sc.nextLine();
 	}
 		
 }
