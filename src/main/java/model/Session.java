@@ -41,7 +41,6 @@ public class Session {
 	@ManyToOne
     @MapsId("idCompte")
     private Compte compte;
-				
 	
 	@ManyToMany(cascade = {CascadeType.MERGE,CascadeType.PERSIST})
 	@JoinTable(name="liste_ressources",inverseJoinColumns=@JoinColumn(name="ressources"))
@@ -202,6 +201,7 @@ public class Session {
 		{
 			if (b.getClass()==batimentDEfense.getClass()) {b.setDef(b.getDef()-batimentDAttaque.getAtt());}
 			batimentDAttaque.setUsed(true);
+			Context.getInstance().getDaoS().update(this);
 		}
 		}else {System.out.println("Ce batiment d'attaque est indisponible");}
 				
@@ -235,6 +235,10 @@ public class Session {
 	
 	public void constructBat(Batiment batiment)  // Construction d'un batiment (ajout a la liste/actuAtt/ActuDef/ActuRessources)
 	{
+		List<Batiment> bats = Context.getInstance().getDaoS().findConstructionsById(this.getId());
+		for(int i = 0;i<bats.size();i++) {
+			this.getConstructions().set(i,bats.get(i));
+		}
 		this.getConstructions().add(batiment);
 		Context.getInstance().getDaoS().update(this);
 		
@@ -681,6 +685,7 @@ public class Session {
 				{
 					valeurAttaque += b.getAtt();
 					((Attaque) b).setUsed(true);
+					Context.getInstance().getDaoS().update(this);
 				}
 				else {System.out.println("Condition attaqueAvecTousBatiments");}
 			}
@@ -711,6 +716,7 @@ public class Session {
 				{
 					valeurAttaque = b.getAtt();
 					((Attaque) b).setUsed(true);
+					Context.getInstance().getDaoS().update(this);
 					System.out.println("La valeur de votre attaque est de " + valeurAttaque + "points");
 				}
 				
@@ -747,8 +753,9 @@ public class Session {
 		
 		System.out.printf("%s","Liste des batiments de "+ this.getCompte().surnom + "\n"); // TODO: "de vos batiment" mais la fonction est appel�e aussi pour afficher les batiments de l'ennemi dans la fonction menuAttaqueChoixBatiment
 		//System.out.printf("%25s %5s %5s %5s\n", "Nom", "level", "def", "att");
+		List<Batiment> batiments = Context.getInstance().getDaoS().findConstructionsById(this.getId());
 		
-		for(Batiment batiment : this.constructions){
+		for(Batiment batiment : batiments){
 			System.out.println(batiment);
 		}
 		
@@ -885,7 +892,9 @@ public class Session {
 		Boolean batExiste;
 		Batiment bat;
 		
-		for (Batiment b : ennemi.getConstructions())
+		List<Batiment> constructEnnemi = Context.getInstance().getDaoS().findConstructionsById(ennemi.getId());
+		
+		for (Batiment b : constructEnnemi)
 		{
 			if (b.toStringName().equalsIgnoreCase(nomBat))
 			{
@@ -937,7 +946,7 @@ public class Session {
 				
 			}
 		}
-		System.out.println("Le joueur" + ennemi.getCompte().getNom() + " a perdu " + valeurAttaque/nbBatiment + " pt de defense par batiment ("+nbBatiment+")");
+		System.out.println("Le joueur " + ennemi.getCompte().getNom() + " a perdu " + valeurAttaque/nbBatiment + " pt de defense par batiment ("+nbBatiment+")");
 		menuAttaquer();
 	}
 	
