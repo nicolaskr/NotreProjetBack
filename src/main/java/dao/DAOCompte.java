@@ -38,7 +38,7 @@ public class DAOCompte implements IDAOCompte{
 		Compte c = null;
 		
 		EntityManager em = Context.getInstance().getEmf().createEntityManager();
-		Query query = em.createQuery("from compte where surnom = :sur");
+		Query query = em.createQuery("from Compte where surnom = :sur");
 		query.setParameter("sur", surnom);
 		c = (Compte) query.getSingleResult();
 		em.close();

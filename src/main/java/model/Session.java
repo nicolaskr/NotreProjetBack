@@ -34,11 +34,11 @@ public class Session {
 	private int def;
 	private int att;
 	
-	@ManyToOne(cascade = {CascadeType.MERGE,CascadeType.PERSIST})
+	@ManyToOne
     @MapsId("idPartie")
     private Partie partie;
 	
-	@ManyToOne(cascade = {CascadeType.MERGE,CascadeType.PERSIST})
+	@ManyToOne
     @MapsId("idCompte")
     private Compte compte;
 				
@@ -58,10 +58,7 @@ public class Session {
 		this.aJoueLeTours = aJoueLeTours;
 		this.partie = partie;
 		this.compte = compte;
-	}
-	
-	
-	
+	}	
 	
 	public boolean isTourEnCours() {
 		return tourEnCours;

@@ -8,6 +8,7 @@ import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -32,10 +33,15 @@ public class Partie {
 	private boolean partieEnCours;
 	@Column(name="tourEnCours")
 	static int cptPartie=0;
-	
+		
 	private transient List<Session> sessions= new ArrayList<Session>();
+		
 	//Constructeurs
-	public Partie() {this.nbrDeTour = nbrDeTour;}
+	public Partie() {}	
+	
+	public Partie(int nbrDeTour) {
+		this.nbrDeTour = nbrDeTour;
+	}
 
 	public Partie(int nbrDeTour, boolean partieEnCours) {
 		super();
@@ -59,8 +65,7 @@ public class Partie {
 	public void setSessions(List<Session> sessions) {
 		this.sessions = sessions;
 	}	
-	
-	
+		
 	public int getId() {
 		return id;
 	}
@@ -92,19 +97,21 @@ public class Partie {
 	
 	//Fonctions maison
 	
-	public int initPartie(int nbJoueur, Compte connected, Partie p)
-	{
+	public int initPartie(int nbJoueur)
+	{		
 		for(int i = 0;i<nbJoueur;i++)
-		{
+		{		
+			System.out.println("\nJoueur "+(i+1)+" : ");
+			String compteCree = Context.saisieString("Ce joueur a-t-il deja un compte ? (y/n)");
 			
-			if(i == 0)
-				
+			if(compteCree.equalsIgnoreCase("y"))
 			{
-				Session session1 = new Session(false , p, connected);
-				System.out.println("\nJoueur 1 : ");
-				System.out.println("\nBienvenue "+connected.getPrenom()+" "+connected.getNom()+", vous etes le Joueur 1, quelle chance ! ");
-				System.out.println("\nDans cette partie vous serez "+connected.getSurnom());
-					
+				String surnomJ = Context.saisieString("Veuillez indiquer le surnom du joueur :");
+				Compte c = Context.getInstance().getDaoC().findBySurnom(surnomJ);
+				Session sessionX = new Session(false, this, c);
+								
+				System.out.println("\nBienvenue "+c.getPrenom()+" "+c.getNom()+", vous etes le Joueur "+(i+1)+" ! ");
+				System.out.println("\nDans cette partie vous serez "+c.getSurnom());
 				
 				Bois b = new Bois(0);
 				Pierre pi = new Pierre(0);
@@ -115,90 +122,55 @@ public class Partie {
 				Cuivre cu = new Cuivre(0);
 				List <Ressource> stock = new ArrayList();
 				stock.add(b);stock.add(pi);stock.add(m);stock.add(ch);stock.add(g);stock.add(f);stock.add(cu);
-				session1.setRessources(stock);
-				session1=Context.getInstance().getDaoS().update(session1);
-
-				sessions.add(session1);
-
+				sessionX.setRessources(stock);
+				sessionX = Context.getInstance().getDaoS().update(sessionX);
+				
+				sessions.add(sessionX);				
 			}
-			
 			else
 			{
-				System.out.println("\nJoueur "+(i+1)+" : ");
-				String compteCree = Context.saisieString("Ce joueur a-t-il deja un compte ? (y/n)");
+				String login = Context.saisieString("\nSaisissez votre login : ");
+				String password = Context.saisieString("\nSaisissez votre mot de passe : ");
+				String prenom = Context.saisieString("\nVeuillez indiquez votre prenom : ");
+				String nom = Context.saisieString("\nVeuillez indiquez votre nom : ");
+				String surnom = Context.saisieString("\nChoisissez le nom sous lequel vous souhaitez etre reconnu durant la partie : ");
+				Compte c = new Joueur (login, password, prenom, nom, surnom);
 				
-				if(compteCree.equalsIgnoreCase("y"))
-				{
-					String surnomJ = Context.saisieString("Veuillez indiquer le surnom du joueur :");
-					Compte c = Context.getInstance().getDaoC().findBySurnom(surnomJ);
-					Session sessionX = new Session (false,p, c);
-					
-					
-					System.out.println("\nBienvenue "+c.getPrenom()+" "+c.getNom()+", vous etes le Joueur "+(i+1)+" ! ");
-					System.out.println("\nDans cette partie vous serez "+c.getSurnom());
-					
-					Bois b = new Bois(0);
-					Pierre pi = new Pierre(0);
-					Minerais m = new Minerais(0);
-					Charbon ch = new Charbon(0);
-					Gold g = new Gold(0);
-					Fer f = new Fer(0);
-					Cuivre cu = new Cuivre(0);
-					List <Ressource> stock = new ArrayList();
-					stock.add(b);stock.add(pi);stock.add(m);stock.add(ch);stock.add(g);stock.add(f);stock.add(cu);
-					sessionX.setRessources(stock);
-					sessionX=Context.getInstance().getDaoS().update(sessionX);
-					
-					sessions.add(sessionX);
-					
-				}
-				else
-				{
-					String login = Context.saisieString("\nSaisissez votre login : ");
-					String password = Context.saisieString("\nSaisissez votre mot de passe : ");
-					String prenom = Context.saisieString("\nVeuillez indiquez votre prenom : ");
-					String nom = Context.saisieString("\nVeuillez indiquez votre nom : ");
-					String surnom = Context.saisieString("\nChoisissez le nom sous lequel vous souhaitez etre reconnu durant la partie : ");
-					Compte c = new Joueur (login, password, prenom, nom, surnom);
-					
-					c= Context.getInstance().getDaoC().insert(c);
-					Session sessionX = new Session (false,p, c);
-					
-											
-					System.out.println("\nBienvenue "+c.getPrenom()+" "+c.getNom()+", vous etes le Joueur "+(i+1)+" ! ");
-					System.out.println("\nDans cette partie vous serez "+c.getSurnom());
-					
-					Bois b = new Bois(0);
-					Pierre pi = new Pierre(0);
-					Minerais m = new Minerais(0);
-					Charbon ch = new Charbon(0);
-					Gold g = new Gold(0);
-					Fer f = new Fer(0);
-					Cuivre cu = new Cuivre(0);
-					List <Ressource> stock = new ArrayList();
-					stock.add(b);stock.add(pi);stock.add(m);stock.add(ch);stock.add(g);stock.add(f);stock.add(cu);
-					sessionX.setRessources(stock);
-					sessionX=Context.getInstance().getDaoS().update(sessionX);
-					
-					
-					sessions.add(sessionX);
-				}
+				c = Context.getInstance().getDaoC().insert(c);
+				Session sessionX = new Session (false, this, c);
 				
+										
+				System.out.println("\nBienvenue "+c.getPrenom()+" "+c.getNom()+", vous etes le Joueur "+(i+1)+" ! ");
+				System.out.println("\nDans cette partie vous serez "+c.getSurnom());
+				
+				Bois b = new Bois(0);
+				Pierre pi = new Pierre(0);
+				Minerais m = new Minerais(0);
+				Charbon ch = new Charbon(0);
+				Gold g = new Gold(0);
+				Fer f = new Fer(0);
+				Cuivre cu = new Cuivre(0);
+				List <Ressource> stock = new ArrayList();
+				stock.add(b);stock.add(pi);stock.add(m);stock.add(ch);stock.add(g);stock.add(f);stock.add(cu);
+				sessionX.setRessources(stock);
+				sessionX=Context.getInstance().getDaoS().update(sessionX);
+				
+				sessions.add(sessionX);
 			}
-				
-		}
-	
+			
+		}			
+			
 		return cptPartie++;
 	}
 	
 
 
-	public void startPartie(Partie p){
+	public void startPartie(){
 
-		p.partieEnCours=true;
+		this.partieEnCours = true;
 		Session vainqueur = null;
 
-		while(p.partieEnCours){
+		while(this.partieEnCours){
 			for(int i = 1;i<=nbrDeTour;i++)
 			{
 				if(i==1)
@@ -219,33 +191,33 @@ public class Partie {
 					{
 						j1.joueTour();
 					}
-					finDePartie(p);/*savePartie(p);*/
+					finDePartie();/*savePartie(p);*/
 
-					if(p.partieEnCours==false)
+					if(this.partieEnCours==false)
 					{
-						vainqueur = finDePartie(p);
+						vainqueur = finDePartie();
 						break;
 
 					}
 				}
-				if(p.partieEnCours==false)
+				if(this.partieEnCours==false)
 				{
 					break;
 				}
 			}
-			if(p.partieEnCours==false)
+			if(this.partieEnCours==false)
 			{
 				break;
 			}
 		}
 		
-		if(p.partieEnCours==false)
+		if(this.partieEnCours==false)
 		{
-			menuFinDePartie(p,vainqueur);
+			menuFinDePartie(vainqueur);
 		}
 	}
 	
-	public Session finDePartie(Partie p)
+	public Session finDePartie()
 	{
 		Session vainqueur = null;
 		for(Session joueur : sessions)
@@ -259,7 +231,7 @@ public class Partie {
 
 			if(somme-joueur.getDef()==0)
 			{
-				p.partieEnCours=false;
+				this.partieEnCours = false;
 				vainqueur = joueur;
 			}
 
@@ -271,7 +243,7 @@ public class Partie {
 					{
 						if(b.getLevel()==5)
 						{
-							p.partieEnCours=false;
+							this.partieEnCours = false;
 							vainqueur = joueur;
 						}
 					}
@@ -282,7 +254,7 @@ public class Partie {
 	}
 	
 	
-	public void menuFinDePartie(Partie p, Session vainqueur)
+	public void menuFinDePartie(Session vainqueur)
 	{
 		Compte c = vainqueur.getCompte();
 		System.out.println("\n\nEt nous avons notre grand vainqueur : "+c.getSurnom()+" ("+c.getPrenom()+" "+c.getNom()+") !!!\n");

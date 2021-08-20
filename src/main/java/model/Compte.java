@@ -3,6 +3,7 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -25,6 +26,7 @@ public abstract class Compte {
 	//protected TypeCompte typeCompte;
 	protected String prenom;
 	protected String nom;
+	@Column(unique = true)
 	protected String surnom;
 	
 //	@OneToMany

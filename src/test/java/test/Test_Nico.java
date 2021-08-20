@@ -21,52 +21,26 @@ public class Test_Nico {
 				
 		EntityManager em = Context.getInstance().getEmf().createEntityManager();
 		
-		Joueur j = new Joueur("login","pass");
-		Partie pa = new Partie(100, true);
-		Session s = new Session(false, pa, j);
-		
-		Catapulte c = new Catapulte();
-		Merveille m = new Merveille();
-		Scierie sc = new Scierie();
-		Four f = new Four();
-		Fonderie fo = new Fonderie();
-
-		
-		s.getConstructions().add(c);
-		s.getConstructions().add(m);
-		s.getConstructions().add(f);
-		s.getConstructions().add(sc);
-		s.getConstructions().add(fo);
-		
-		Bois b = new Bois(2);
-		Pierre p = new Pierre(3);
-		Gold g = new Gold (5);
-		
-		s.getRessources().add(g);
-		s.getRessources().add(p);
-		s.getRessources().add(b);
-		
-
 		em.getTransaction().begin();
+		
+		Joueur thib = new Joueur("login", "pass", "Thibault", "David", "1");
+		Joueur john = new Joueur("login", "pass", "Johan", "Loison", "2");
+		Joueur pier = new Joueur("login", "pass", "Pierre", "Lequay", "3");
+		Joueur nico = new Joueur("login", "pass", "Nicolas", "Kroupa", "4");
 
-//		Context.getInstance().getDaoC().insert(j);
-//		Context.getInstance().getDaoP().insert(pa);
-//
-//
-//		Context.getInstance().getDaoB().insert(m);
-//		Context.getInstance().getDaoB().insert(f);
-//		Context.getInstance().getDaoB().insert(sc);
-//		Context.getInstance().getDaoB().insert(c);
-//		Context.getInstance().getDaoB().insert(fo);
+		Partie partie = new Partie(100, true);	
 
-		Context.getInstance().getDaoS().update(s);
-
-		em.getTransaction().commit();
+				
+		Context.getInstance().getDaoC().update(thib);
+		Context.getInstance().getDaoC().update(john);
+		Context.getInstance().getDaoC().update(pier);
+		Context.getInstance().getDaoC().update(nico);
+		partie = Context.getInstance().getDaoP().update(partie);
 		
 		em.close();
 		
-		
-		
+		partie.initPartie(4);
+
 		Context.getInstance().closeEmf();
 
 	}
