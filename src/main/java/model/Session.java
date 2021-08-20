@@ -131,9 +131,10 @@ public class Session {
 	public ArrayList<Batiment> actuDef() //Permet d'actualiser les points de defense du joueur ainsi que la liste des batiments du joueur (ATTENTION RENVOI UNE LISTE !!)
 	{
 		ArrayList <Batiment> batiments = new ArrayList <Batiment>();
+		List<Batiment> construct = Context.getInstance().getDaoS().findConstructionsById(this.getId());
 		this.def=0;
 		
-		for (Batiment batiment : this.constructions)
+		for (Batiment batiment : construct)
 		{
 			if (batiment.getDef()>0) {
 				batiments.add(batiment);
@@ -278,32 +279,32 @@ public class Session {
 			if(b instanceof Carriere)
 			{
 				pierre+=5;
-				System.out.println("\nVotre carriere vous a rapporte 3 pierres supplementaires ("+pierre+" pierre(s) au total !)\n");	
+				System.out.println("\nVotre carriere vous a rapporte 5 pierres supplementaires ("+pierre+" pierre(s) au total !)\n");	
 			}
 			else if(b instanceof Carrier)
 			{
 				pierre+=2;
-				System.out.println("\nVotre carrier vous a rapporte 3 pierres supplementaires ("+pierre+" pierre(s) au total !)\n");	
+				System.out.println("\nVotre carrier vous a rapporte 2 pierres supplementaires ("+pierre+" pierre(s) au total !)\n");	
 			}
 			else if (b instanceof Mine)
 			{
 				minerais+=5;
-				System.out.println("\nVotre mine vous a rapporte 3 minerais supplementaires ("+minerais+" minerais au total !)\n");	
+				System.out.println("\nVotre mine vous a rapporte 5 minerais supplementaires ("+minerais+" minerais au total !)\n");	
 			}
 			else if (b instanceof Mineur)
 			{
 				minerais+=2;
-				System.out.println("\nVotre mineur vous a rapporte 3 minerais supplementaires ("+minerais+" minerais au total !)\n");	
+				System.out.println("\nVotre mineur vous a rapporte 2 minerais supplementaires ("+minerais+" minerais au total !)\n");	
 			}
 			else if (b instanceof Scierie)
 			{
 				bois+=5;
-				System.out.println("\nVotre scierie vous a rapporte3 bois supplementaires ("+bois+" bois au total !)\n");	
+				System.out.println("\nVotre scierie vous a rapporte 5 bois supplementaires ("+bois+" bois au total !)\n");	
 			}
 			else if (b instanceof Bucheron)
 			{
-				bois+=3;
-				System.out.println("\nVotre bucheron vous a rapporte 3 minerais supplementaires ("+minerais+" minerais au total !)\n");	
+				bois+=2;
+				System.out.println("\nVotre bucheron vous a rapporte 2 minerais supplementaires ("+minerais+" minerais au total !)\n");	
 			}
 		}
 		
@@ -842,15 +843,16 @@ public class Session {
 	public void menuAttaqueJoueur(double valeurAttaque)
 	{
 		System.out.println("liste des joueurs adverses :");
-		for (Session se: this.getPartie().getSessions())
+		List<Session> listSessions = Context.getInstance().getDaoS().findSessionsByPartieId(this.getPartie().getId());
+		for (Session se: listSessions)
 		{
-			if (se.getCompte().getSurnom()!=this.getCompte().surnom)
+			if (!se.getCompte().getSurnom().equals(this.getCompte().getSurnom()))
 			{
-				System.out.println((this.getPartie().getSessions().indexOf(se)+1)+ " - "+se.getCompte().getSurnom());
+				System.out.println((listSessions.indexOf(se)+1)+ " - "+se.getCompte().getSurnom());
 			}
 		}
 		int victime = Context.saisieInt("Quel joueur souhaites-tu attaquer? (1,2,3,...)");
-		Session ennemi = this.getPartie().getSessions().get(victime-1);
+		Session ennemi = listSessions.get(victime-1);
 				
 		System.out.printf("%s\n","MENU ATTAQUER" + " - " + this.getCompte().prenom + " " + this.getCompte().nom + " " + this.getCompte().surnom);
 
@@ -914,12 +916,14 @@ public class Session {
 	
 	public void attaqueJoueur(Session ennemi, double valeurAttaque)
 	{
-		double nbBatiment = ennemi.getConstructions().size();
+		List<Batiment> construct = Context.getInstance().getDaoS().findConstructionsById(ennemi.getId());
+		System.out.println(construct);
+		double nbBatiment = construct.size();
 		double degatBatiment = (valeurAttaque - valeurAttaque%nbBatiment)/nbBatiment;
 		double degatReste= valeurAttaque%nbBatiment;
 		double i = 0;
 		
-		for (Batiment b : ennemi.getConstructions())
+		for (Batiment b : construct)
 		{
 			i++;
 			if(i<=degatReste) 

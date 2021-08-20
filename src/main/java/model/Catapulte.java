@@ -7,12 +7,12 @@ import javax.persistence.Entity;
 
 @Entity
 public class Catapulte extends Attaque {
-	protected transient Bois b = new Bois(3);
+	protected transient Bois b = new Bois(1);
 	protected transient Pierre p = new Pierre(0);
 	protected transient Minerais m = new Minerais(0);
 	protected transient Charbon c = new Charbon(0);
-	protected transient Gold g = new Gold(3);
-	protected transient Fer f = new Fer(3);
+	protected transient Gold g = new Gold(0);
+	protected transient Fer f = new Fer(0);
 	protected transient Cuivre cu = new Cuivre(0);
 	
 	public Catapulte() 

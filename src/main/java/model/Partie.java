@@ -56,6 +56,14 @@ public class Partie {
 		this.partieEnCours = partieEnCours;
 	}
 	
+	public Partie(int id, int nbrDeTour, boolean partieEnCours, List<Session> sessions) {
+		super();
+		this.id = id;
+		this.nbrDeTour = nbrDeTour;
+		this.partieEnCours = partieEnCours;
+		this.sessions = sessions;
+	}
+	
 	//Getters & Setters
 
 	public List<Session> getSessions() {
@@ -86,13 +94,18 @@ public class Partie {
 		return partieEnCours;
 	}
 
-	public void setpartieEnCours(boolean partieEnCours) {
+	public void setPartieEnCours(boolean partieEnCours) {
 		this.partieEnCours = partieEnCours;
+	}
+	
+	public boolean getPartieEnCours() {
+		return partieEnCours;
 	}
 
 	@Override
 	public String toString() {
-		return "Partie [id=" + id + ", nbrDeTour=" + nbrDeTour + ", partieEnCours=" + partieEnCours + "]";
+		return "Partie [id=" + id + ", nbrDeTour=" + nbrDeTour + ", partieEnCours=" + partieEnCours + ", sessions="
+				+ sessions + "]";
 	}
 	
 	//Fonctions maison
@@ -125,7 +138,8 @@ public class Partie {
 				sessionX.setRessources(stock);
 				sessionX = Context.getInstance().getDaoS().update(sessionX);
 				
-				sessions.add(sessionX);				
+				sessions.add(sessionX);
+				System.out.println(sessions);
 			}
 			else
 			{
@@ -156,17 +170,19 @@ public class Partie {
 				sessionX=Context.getInstance().getDaoS().update(sessionX);
 				
 				sessions.add(sessionX);
+				System.out.println(sessions);
 			}
 			
-		}			
 			
+		}			
+		
 		return cptPartie++;
 	}
 	
 
 
 	public void startPartie(){
-
+		
 		this.partieEnCours = true;
 		Session vainqueur = null;
 
@@ -182,14 +198,14 @@ public class Partie {
 				}
 				for(int j=0;j<sessions.size();j++)
 				{
-					Compte c = sessions.get(j).getCompte();
-					Session j1 = sessions.get(j);
-					System.out.println("\nTour "+(i)+" - " + c.getPrenom() + " " + c.getNom() + " " + c.getSurnom() + "\n");
-					j1.setTourEnCours(true);
-					j1.piocherRessources();
-					while(j1.isTourEnCours()==true)
+					//Compte c = sessions.get(j).getCompte();
+					//Session j1 = sessions.get(j);
+					System.out.println("\nTour "+(i)+" - " + sessions.get(j).getCompte().getPrenom() + " " + sessions.get(j).getCompte().getNom() + " " + sessions.get(j).getCompte().getSurnom() + "\n");
+					sessions.get(j).setTourEnCours(true);
+					sessions.get(j).piocherRessources();
+					while(sessions.get(j).isTourEnCours()==true)
 					{
-						j1.joueTour();
+						sessions.get(j).joueTour();
 					}
 					finDePartie();/*savePartie(p);*/
 
@@ -227,7 +243,6 @@ public class Partie {
 			for(int i=0;i<sessions.size();i++)
 			{
 				somme+=(sessions.get(i)).getDef();
-				System.out.println(sessions.get(i).getCompte() + " : "+ sessions.get(i).getDef());
 			}
 
 			if(somme-joueur.getDef()==0)
