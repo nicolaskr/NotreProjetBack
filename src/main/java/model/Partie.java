@@ -27,7 +27,7 @@ public class Partie {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	@Column(name="nbrDeTour")
-	private int nbrDeTour;
+	private int nbrDeTour = 100;
 	@Column(name="partieEnCours")
 	private boolean partieEnCours;
 	@Column(name="tourEnCours")
@@ -193,12 +193,12 @@ public class Partie {
 	
 
 
-	public void startPartie(Partie p){
+	public void startPartie(){
 
-		p.partieEnCours=true;
+		this.partieEnCours = true;
 		Session vainqueur = null;
-
-		while(p.partieEnCours){
+		
+		while(this.partieEnCours==true){
 			for(int i = 1;i<=nbrDeTour;i++)
 			{
 				if(i==1)
@@ -219,33 +219,33 @@ public class Partie {
 					{
 						j1.joueTour();
 					}
-					finDePartie(p);/*savePartie(p);*/
+					finDePartie();/*savePartie(p);*/
 
-					if(p.partieEnCours==false)
+					if(this.partieEnCours==false)
 					{
-						vainqueur = finDePartie(p);
+						vainqueur = finDePartie();
 						break;
 
 					}
 				}
-				if(p.partieEnCours==false)
+				if(this.partieEnCours==false)
 				{
 					break;
 				}
 			}
-			if(p.partieEnCours==false)
+			if(this.partieEnCours==false)
 			{
 				break;
 			}
 		}
 		
-		if(p.partieEnCours==false)
+		if(this.partieEnCours==false)
 		{
-			menuFinDePartie(p,vainqueur);
+			menuFinDePartie(vainqueur);
 		}
 	}
 	
-	public Session finDePartie(Partie p)
+	public Session finDePartie()
 	{
 		Session vainqueur = null;
 		for(Session joueur : sessions)
@@ -255,11 +255,12 @@ public class Partie {
 			for(int i=0;i<sessions.size();i++)
 			{
 				somme+=(sessions.get(i)).getDef();
+				System.out.println(sessions.get(i).getCompte() + " : "+ sessions.get(i).getDef());
 			}
 
 			if(somme-joueur.getDef()==0)
 			{
-				p.partieEnCours=false;
+				this.partieEnCours=false;
 				vainqueur = joueur;
 			}
 
@@ -271,7 +272,7 @@ public class Partie {
 					{
 						if(b.getLevel()==5)
 						{
-							p.partieEnCours=false;
+							this.partieEnCours=false;
 							vainqueur = joueur;
 						}
 					}
@@ -282,7 +283,7 @@ public class Partie {
 	}
 	
 	
-	public void menuFinDePartie(Partie p, Session vainqueur)
+	public void menuFinDePartie(Session vainqueur)
 	{
 		Compte c = vainqueur.getCompte();
 		System.out.println("\n\nEt nous avons notre grand vainqueur : "+c.getSurnom()+" ("+c.getPrenom()+" "+c.getNom()+") !!!\n");

@@ -128,6 +128,7 @@ public class Session {
 		Bastide bastide = new Bastide();
 		this.getConstructions().add(bastide);
 		Context.getInstance().getDaoS().update(this);
+		this.actuDef();
 	}
 		
 	public ArrayList<Batiment> actuDef() //Permet d'actualiser les points de defense du joueur ainsi que la liste des batiments du joueur (ATTENTION RENVOI UNE LISTE !!)
@@ -279,37 +280,49 @@ public class Session {
 		{
 			if(b instanceof Carriere)
 			{
-				pierre+=3;
+				pierre+=5;
 				System.out.println("\nVotre carriere vous a rapporte 3 pierres supplementaires ("+pierre+" pierre(s) au total !)\n");	
+			}
+			else if(b instanceof Carrier)
+			{
+				pierre+=2;
+				System.out.println("\nVotre carrier vous a rapporte 3 pierres supplementaires ("+pierre+" pierre(s) au total !)\n");	
 			}
 			else if (b instanceof Mine)
 			{
-				minerais+=3;
+				minerais+=5;
 				System.out.println("\nVotre mine vous a rapporte 3 minerais supplementaires ("+minerais+" minerais au total !)\n");	
+			}
+			else if (b instanceof Mineur)
+			{
+				minerais+=2;
+				System.out.println("\nVotre mineur vous a rapporte 3 minerais supplementaires ("+minerais+" minerais au total !)\n");	
 			}
 			else if (b instanceof Scierie)
 			{
-				bois+=3;
+				bois+=5;
 				System.out.println("\nVotre scierie vous a rapporte3 bois supplementaires ("+bois+" bois au total !)\n");	
+			}
+			else if (b instanceof Bucheron)
+			{
+				bois+=3;
+				System.out.println("\nVotre bucheron vous a rapporte 3 minerais supplementaires ("+minerais+" minerais au total !)\n");	
 			}
 		}
 		
 		for (Ressource r : this.ressources)	//modification du stock de ressources du joueur en fonction du cout (cf. methode actuAchat de la classe ressources)
 		{
-			
-			switch(r.getClass().getName()) {
-			  case "bois":
-				  r.actuGain(bois);
-				  break;
-			  case "pierre":
-				  r.actuGain(bois);
-			      break;
-			  case "minerais":
-				  r.actuGain(bois);    
-				  break;
-			  default:
-			  
-			}	
+			if(r instanceof Bois)
+			{
+				r.actuGain(bois);
+			}
+			else if(r instanceof Pierre) {
+				r.actuGain(pierre);
+			}
+			else if(r instanceof Minerais) {
+				r.actuGain(minerais);
+			}
+
 		}
 
 //		b.actuGain(bois);
@@ -576,16 +589,21 @@ public class Session {
 		Batiment batiment=null;
 		switch(batimentName)
 			{
+				case "Baliste" : batiment = new Baliste();break;
 				case "Bastide" : batiment = new Bastide();break;
+				case "Bucheron" : batiment = new Bucheron();break;
 				case "Carriere" : batiment = new Carriere();break;
+				case "Carrier" : batiment = new Carrier();break;
 				case "Catapulte" : batiment = new Catapulte();break;
 				case "Fonderie" : batiment = new Fonderie();break;
 				case "Forteresse" : batiment = new Forteresse();break;
 				case "Four" : batiment = new Four();break;
 				case "Merveille" : batiment = new Merveille();break;
 				case "Mine" : batiment = new Mine();break;
+				case "Mineur" : batiment = new Mineur();break;
 				case "Muraille" : batiment = new Muraille();break;
 				case "Scierie" : batiment = new Scierie();break;
+				case "Scorpion" : batiment = new Scorpion();break;
 				default: System.out.println("Ceci n'est pas un batiment");break;
 			}
 			
@@ -826,17 +844,16 @@ public class Session {
 	
 	public void menuAttaqueJoueur(double valeurAttaque)
 	{
-		Partie p = this.getPartie();
 		System.out.println("liste des joueurs adverses :");
-		for (Session se: p.getSessions())
+		for (Session se: this.getPartie().getSessions())
 		{
 			if (se.getCompte().getSurnom()!=this.getCompte().surnom)
 			{
-				System.out.println((p.getSessions().indexOf(se)+1)+ " - "+se.getCompte().getSurnom());
+				System.out.println((this.getPartie().getSessions().indexOf(se)+1)+ " - "+se.getCompte().getSurnom());
 			}
 		}
 		int victime = Context.saisieInt("Quel joueur souhaites-tu attaquer? (1,2,3,...)");
-		Session ennemi = p.getSessions().get(victime-1);
+		Session ennemi = this.getPartie().getSessions().get(victime-1);
 				
 		System.out.printf("%s\n","MENU ATTAQUER" + " - " + this.getCompte().prenom + " " + this.getCompte().nom + " " + this.getCompte().surnom);
 
