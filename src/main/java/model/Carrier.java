@@ -19,7 +19,7 @@ public class Carrier extends Production{
 	{
 		setNom("carrier");
 		cost.add(b);cost.add(p);cost.add(m);cost.add(c);cost.add(g);cost.add(f);cost.add(cu);
-		setDef(20);
+		setDef(2);
 	}
 
 	public Carrier(String nom, int level, double def){

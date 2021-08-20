@@ -3,8 +3,10 @@ package dao;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
 
 import model.Partie;
+import model.Session;
 import util.Context;
 
 public class DAOPartie implements IDAOPartie {
@@ -51,7 +53,12 @@ public class DAOPartie implements IDAOPartie {
 	}
 	@Override
 	public Partie findById(Integer id) {
-		// TODO Auto-generated method stub
-		return null;
+		EntityManager em = Context.getInstance().getEmf().createEntityManager();
+		em.getTransaction().begin();
+		Partie p = em.find(Partie.class,id);
+		em.getTransaction().commit();
+		em.close();
+		return p;
 	}	
+	
 }
