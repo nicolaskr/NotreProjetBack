@@ -18,7 +18,7 @@ import javax.persistence.InheritanceType;
 public abstract class Ressource {
 	
 	@Column(name="qte")
-	protected int stock;
+	protected int stock = 0;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	protected int id;

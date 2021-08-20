@@ -28,7 +28,7 @@ public class Partie {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	@Column(name="nbrDeTour")
-	private int nbrDeTour;
+	private int nbrDeTour = 100;
 	@Column(name="partieEnCours")
 	private boolean partieEnCours;
 	@Column(name="tourEnCours")
@@ -227,6 +227,7 @@ public class Partie {
 			for(int i=0;i<sessions.size();i++)
 			{
 				somme+=(sessions.get(i)).getDef();
+				System.out.println(sessions.get(i).getCompte() + " : "+ sessions.get(i).getDef());
 			}
 
 			if(somme-joueur.getDef()==0)

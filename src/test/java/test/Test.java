@@ -212,7 +212,7 @@ public class Test {
 
 		switch(choix) 
 		{
-		case 1 : p.startPartie(p);break;
+		case 1 : p.startPartie();break;
 		case 2 : menuPartie(p);break;
 		case 3 : connected=null;menuPrincipal();break;
 		}
