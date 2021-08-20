@@ -807,7 +807,7 @@ public class Session {
 			switch(choix) 
 			{
 				case 0: menuJoueur() ;break;
-				case 1: double valeurAttaque = choixBatimentAttaque();menuAttaqueJoueur(partie,valeurAttaque);break;
+				case 1: double valeurAttaque = choixBatimentAttaque();menuAttaqueJoueur(valeurAttaque);break;
 				default : System.out.println("Mauvaise valeur");
 			}
 			
@@ -824,8 +824,9 @@ public class Session {
 	
 	
 	
-	public void menuAttaqueJoueur(Partie p, double valeurAttaque)
+	public void menuAttaqueJoueur(double valeurAttaque)
 	{
+		Partie p = this.getPartie();
 		System.out.println("liste des joueurs adverses :");
 		for (Session se: p.getSessions())
 		{
@@ -845,10 +846,9 @@ public class Session {
 		int choix = Context.saisieInt("Choisir une option");
 		
 		switch(choix) 
-		{
-			
-			case 1: attaqueJoueur(ennemi,p,valeurAttaque);break;
-			case 2: menuAttaqueChoixBatiment(ennemi,p,valeurAttaque);break;
+		{			
+			case 1: attaqueJoueur(ennemi,valeurAttaque);break;
+			case 2: menuAttaqueChoixBatiment(ennemi,valeurAttaque);break;
 			default : System.out.println("Mauvaise valeur");
 		}
 	}
@@ -856,11 +856,11 @@ public class Session {
 	
 	
 	
-	public void menuAttaqueChoixBatiment(Session s, Partie p, double valeurAttaque)
+	public void menuAttaqueChoixBatiment(Session ennemi, double valeurAttaque)
 	{
 
-		// Affiche liste des batiments du joueur attaqué
-		s.displayOwnedConstruction();
+		// Affiche liste des batiments du joueur attaquï¿½
+		ennemi.displayOwnedConstruction();
 
 
 		String nomBat = Context.saisieString("Quel batiment voulez vous attaquer(nom)?");
@@ -869,7 +869,7 @@ public class Session {
 		Boolean batExiste;
 		Batiment bat;
 		
-		for (Batiment b : s.getConstructions())
+		for (Batiment b : ennemi.getConstructions())
 		{
 			if (b.toStringName().equalsIgnoreCase(nomBat))
 			{
@@ -877,7 +877,7 @@ public class Session {
 				batExiste = true;
 				if(i==numBat)
 				{
-					attaque(s, b, valeurAttaque);
+					attaque(ennemi, b, valeurAttaque);
 				}
 			}
 		}
@@ -885,12 +885,12 @@ public class Session {
 		if(batExiste = false)
 		{
 			System.out.println("Le joueur attaque ne possede pas ce batiment!'");
-			menuAttaqueChoixBatiment(s,p,valeurAttaque);
+			menuAttaqueChoixBatiment(ennemi,valeurAttaque);
 		}
 		if (i!=numBat)
 		{
 			System.out.println("Le numero de batiment n'existe pas!'");
-			menuAttaqueChoixBatiment(s,p,valeurAttaque);
+			menuAttaqueChoixBatiment(ennemi,valeurAttaque);
 		}
 		
 		menuAttaquer();
@@ -898,28 +898,28 @@ public class Session {
 	}
 	
 	
-	public void attaqueJoueur(Session se, Partie p, double valeurAttaque)
+	public void attaqueJoueur(Session ennemi, double valeurAttaque)
 	{
-		double nbBatiment = se.getConstructions().size();
+		double nbBatiment = ennemi.getConstructions().size();
 		double degatBatiment = (valeurAttaque - valeurAttaque%nbBatiment)/nbBatiment;
 		double degatReste= valeurAttaque%nbBatiment;
 		double i = 0;
 		
-		for (Batiment b : se.getConstructions())
+		for (Batiment b : ennemi.getConstructions())
 		{
 			i++;
 			if(i<=degatReste) 
 			{
-				attaque(se, b, degatBatiment+1);
+				attaque(ennemi, b, degatBatiment+1);
 				
 			}
 			else 
 			{
-				attaque(se, b, degatBatiment);
+				attaque(ennemi, b, degatBatiment);
 				
 			}
 		}
-		System.out.println("Le joueur" + se + " a perdu " + valeurAttaque/nbBatiment + " pt de defense par batiment ("+nbBatiment+")");
+		System.out.println("Le joueur" + ennemi + " a perdu " + valeurAttaque/nbBatiment + " pt de defense par batiment ("+nbBatiment+")");
 		menuAttaquer();
 	}
 	
