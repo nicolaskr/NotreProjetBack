@@ -75,7 +75,7 @@ public class DAOSession implements IDAOSession{
 		int idPartie = id.getIdPartie();
 		EntityManager em = Context.getInstance().getEmf().createEntityManager();
 		em.getTransaction().begin();
-		Query query = em.createNativeQuery("Select * from batiment join liste_batiments on batiment.id=liste_batiments.batiments where Session_compte_id = :idc and Session_partie_id = :idp",Batiment.class);
+		Query query = em.createNativeQuery("Select * from Batiment join liste_batiments on batiment.id=liste_batiments.batiments where Session_compte_id = :idc and Session_partie_id = :idp",Batiment.class);
 		query.setParameter("idc", idCompte);
 		query.setParameter("idp", idPartie);
 		List<Batiment> constructions = query.getResultList();
