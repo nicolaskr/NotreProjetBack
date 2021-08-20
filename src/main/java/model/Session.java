@@ -937,7 +937,7 @@ public class Session {
 				
 			}
 		}
-		System.out.println("Le joueur" + ennemi + " a perdu " + valeurAttaque/nbBatiment + " pt de defense par batiment ("+nbBatiment+")");
+		System.out.println("Le joueur" + ennemi.getCompte().getNom() + " a perdu " + valeurAttaque/nbBatiment + " pt de defense par batiment ("+nbBatiment+")");
 		menuAttaquer();
 	}
 	
