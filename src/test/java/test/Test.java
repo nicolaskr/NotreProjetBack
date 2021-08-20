@@ -89,19 +89,6 @@ public class Test {
 	public static void seConnecter() {
 		String compteCree = Context.saisieString("\nAvez-vous deja cree un compte ? (y/n)");
 
-
-		Catapulte c = new Catapulte();
-		Merveille m = new Merveille();
-		Scierie sc = new Scierie();
-		Four f = new Four();
-		Fonderie fo = new Fonderie();
-
-		//		s.getConstructions().add(c);
-		//		s.getConstructions().add(m);
-		//		s.getConstructions().add(f);
-		//		s.getConstructions().add(sc);
-		//		s.getConstructions().add(fo);
-
 		if(compteCree.equalsIgnoreCase("y"))
 		{
 			String login = Context.saisieString("\nSaisir login");
@@ -192,7 +179,7 @@ public class Test {
 
 		Partie nouvPartie = new Partie();
 		Partie p = Context.getInstance().getDaoP().insert(nouvPartie);
-		p.initPartie(nbJoueur, connected,p);
+		p.initPartie(nbJoueur);
 		// session cr�e dans le initPartie
 		//		Session s = new Session(false, p,connected);
 		//		Context.getInstance().getDaoS().insert(s);
@@ -212,7 +199,7 @@ public class Test {
 
 		switch(choix) 
 		{
-		case 1 : p.startPartie();break;
+		case 1 : p.startPartie();;break;
 		case 2 : menuPartie(p);break;
 		case 3 : connected=null;menuPrincipal();break;
 		}
