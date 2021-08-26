@@ -6,13 +6,11 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import notreProjetBack.model.Batiment;
-import notreProjetBack.model.Session;
-import notreProjetBack.model.SessionBatiment;
+import notreProjetBack.model.Transformation;
 
-public interface SessionBatimentRepository extends JpaRepository <SessionBatiment, Integer> {
+public interface TransformationRepository extends JpaRepository <Transformation, Integer> {
 
-
-	List<SessionBatiment> findBySession(Session session);
-		
-
+	@Query("from Transformation")
+	List<Transformation> findTransformationBatiment();
+	
 }

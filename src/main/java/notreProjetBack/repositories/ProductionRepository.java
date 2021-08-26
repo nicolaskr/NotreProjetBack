@@ -6,13 +6,11 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import notreProjetBack.model.Batiment;
-import notreProjetBack.model.Session;
-import notreProjetBack.model.SessionBatiment;
+import notreProjetBack.model.Production;
 
-public interface SessionBatimentRepository extends JpaRepository <SessionBatiment, Integer> {
+public interface ProductionRepository extends JpaRepository <Production, Integer> {
 
-
-	List<SessionBatiment> findBySession(Session session);
-		
-
+	@Query("from Production")
+	List<Production> findProductionBatiment();
+	
 }

@@ -5,14 +5,12 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import notreProjetBack.model.Attaque;
 import notreProjetBack.model.Batiment;
-import notreProjetBack.model.Session;
-import notreProjetBack.model.SessionBatiment;
+import notreProjetBack.model.Defense;
 
-public interface SessionBatimentRepository extends JpaRepository <SessionBatiment, Integer> {
+public interface AttaqueRepository extends JpaRepository <Attaque, Integer> {
 
-
-	List<SessionBatiment> findBySession(Session session);
-		
-
+	@Query("from Attaque")
+	List<Attaque> findAttaqueBatiment();
 }
