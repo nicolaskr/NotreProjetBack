@@ -48,22 +48,23 @@ public class TestBatiment {
 	}
 
 	@Test
-	@Rollback(true)
+	@Rollback(false)
 	@Transactional
 	public void insertTest() {
-		Defense b = (Defense) new Batiment("Test", 1, 10);
+		Defense b = new Defense("test", 0, 0, 0, false, null);
 		batRepo.save(b);
+		System.out.println("le batiment est : "+b);
 	}
 	
 	
 	@Test
-	public void findTypeBatiment() {
-		assertEquals("Defense", batRepo.findTypeBatiment("Defense").get(0).getType_batiment());
+	public void findByType() {
+		assertEquals("Defense", (String) batRepo.findByType("Defense").get(0).getType());
 	}
 	
 	@Test
 	public void findByAmeliorable() {
-		assertEquals("Defense", batRepo.findByAmeliorable(true).get(0).getType_batiment());
+		assertEquals("Defense",(String) batRepo.findByAmeliorable(false).get(0).getType());
 	}
 
 }
