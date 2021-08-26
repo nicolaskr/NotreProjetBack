@@ -41,7 +41,11 @@ public class Batiment {
 	
 	@Autowired
 	protected transient RessourceRepository ressourceRepo;
+<<<<<<< refs/remotes/origin/master
 
+=======
+	
+>>>>>>> debugage
 	
 	
 	
