@@ -14,11 +14,11 @@ import javax.persistence.InheritanceType;
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name="typeCompte")
-public class Compte {
+public abstract class Compte {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	protected int id;
+	protected Integer id;
 	protected String login;
 	protected String password;
 	protected String prenom;
