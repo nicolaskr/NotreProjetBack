@@ -12,8 +12,8 @@ import dao.DAOBatiment;
 import dao.DAOPartie;
 import dao.DAORessource;
 
-@Entity
-@DiscriminatorValue("joueur")
+//@Entity
+//@DiscriminatorValue("joueur")
 public class Joueur extends Compte{
 	
 //	private Bois b = new Bois(0);
