@@ -1,6 +1,8 @@
 package notreProjetBack.model;
 
 import javax.persistence.*;
+
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -29,11 +31,11 @@ public class Session {
     @ManyToOne
     private Compte compte;
 
-    @OneToOne
-    private SessionBatiment sessionBatiment;
+    @OneToMany (mappedBy = "session")
+    private List<SessionBatiment> sessionBatiment;
 
-    @OneToOne
-    private SessionRessource sessionRessource;
+    @OneToMany (mappedBy = "session")
+    private List<SessionRessource> sessionRessource;
 
     public Session() {
     }
@@ -120,20 +122,22 @@ public class Session {
         this.compte = compte;
     }
 
-    public SessionBatiment getSessionBatiment() {
-        return sessionBatiment;
-    }
+	public List<SessionBatiment> getSessionBatiment() {
+		return sessionBatiment;
+	}
 
-    public void setSessionBatiment(SessionBatiment sessionBatiment) {
-        this.sessionBatiment = sessionBatiment;
-    }
+	public void setSessionBatiment(List<SessionBatiment> sessionBatiment) {
+		this.sessionBatiment = sessionBatiment;
+	}
 
-    public SessionRessource getSessionRessource() {
-        return sessionRessource;
-    }
+	public List<SessionRessource> getSessionRessource() {
+		return sessionRessource;
+	}
 
-    public void setSessionRessource(SessionRessource sessionRessource) {
-        this.sessionRessource = sessionRessource;
-    }
+	public void setSessionRessource(List<SessionRessource> sessionRessource) {
+		this.sessionRessource = sessionRessource;
+	}
+
+
 
 }

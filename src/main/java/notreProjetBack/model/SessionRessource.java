@@ -12,10 +12,10 @@ public class SessionRessource {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @OneToOne
+    @ManyToOne
     private Session session;
 
-    @OneToOne
+    @ManyToOne
     private Ressource ressource;
     
     private int quantite;
@@ -52,11 +52,24 @@ public class SessionRessource {
         this.session = session;
     }
 
-    public List<Ressource> getRessourceList() {
-        return ressourceList;
-    }
 
-    public void setRessourceList(List<Ressource> ressourceList) {
-        this.ressourceList = ressourceList;
-    }
+	public Ressource getRessource() {
+		return ressource;
+	}
+
+
+	public void setRessource(Ressource ressource) {
+		this.ressource = ressource;
+	}
+
+
+	public int getQuantite() {
+		return quantite;
+	}
+
+	public void setQuantite(int quantite) {
+		this.quantite = quantite;
+	}
+
+
 }

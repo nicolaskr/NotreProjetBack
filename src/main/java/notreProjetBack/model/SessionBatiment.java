@@ -15,8 +15,8 @@ public class SessionBatiment {
     @OneToOne
     private Session session;
 
-    @OneToMany
-    private List<Batiment> batimentList = new ArrayList<>();
+    @ManyToOne
+    private Batiment batiment;
 
     public SessionBatiment() {
     }
@@ -50,12 +50,13 @@ public class SessionBatiment {
         this.session = session;
     }
 
-    public List<Batiment> getBatimentList() {
-        return batimentList;
-    }
+	public Batiment getBatiment() {
+		return batiment;
+	}
 
-    public void setBatimentList(List<Batiment> batimentList) {
-        this.batimentList = batimentList;
-    }
+	public void setBatiment(Batiment batiment) {
+		this.batiment = batiment;
+	}
+
 
 }

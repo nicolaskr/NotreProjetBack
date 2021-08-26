@@ -1,5 +1,7 @@
 package notreProjetBack.model;
 
+import java.util.List;
+
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -7,7 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -33,19 +35,15 @@ public class Batiment {
 	
 
 
-	@ManyToOne
-	protected CoutBatiment cost;
+	@OneToMany(mappedBy = "batiment")
+	protected List<CoutBatiment> cost;
 	
 	@Autowired
 	protected transient CoutBatimentRepository cBatRepo;
 	
 	@Autowired
 	protected transient RessourceRepository ressourceRepo;
-<<<<<<< refs/remotes/origin/master
 
-=======
-	
->>>>>>> debugage
 	
 	
 	
@@ -136,14 +134,15 @@ public class Batiment {
 		this.level = level;
 	}
 
-	public CoutBatiment getCost() {
+
+	public List<CoutBatiment> getCost() {
 		return cost;
 	}
 
-	public void setCost(CoutBatiment cost) {
+	public void setCost(List<CoutBatiment> cost) {
 		this.cost = cost;
 	}
-	
+
 	//------------------------------------------------------------------------------------------
 	//Methods
 	public String toStringWithCost() {		
@@ -151,11 +150,11 @@ public class Batiment {
 		String outputText = String.format("Nom: "+ this.getNom() + "  Niveau: " + this.level+ "  Defense: " +this.def + "  Attaque: " +this.att + "\n");
 		
 
-		for(Ressource ressource :coutBatRepo.findCoutByBatiment((this))){
+		for(Ressource ressource :cBatRepo.findCoutByBatiment((this))){
 
 
 						
-			Integer costRessource = coutBatRepo.findCoutByBatimentByRessource(this, ressource).get();
+			Integer costRessource = cBatRepo.findCoutByBatimentByRessource(this, ressource).get();
 			
 			if(costRessource>0){
 				

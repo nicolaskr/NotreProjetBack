@@ -17,7 +17,7 @@ public class Partie {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @OneToMany
+    @OneToMany(mappedBy = "partie")
     private List<Session> sessions = new ArrayList<>();
 
     public Partie() {

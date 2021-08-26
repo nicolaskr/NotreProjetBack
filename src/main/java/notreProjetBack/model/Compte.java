@@ -1,5 +1,6 @@
 package notreProjetBack.model;
 
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Column;
@@ -10,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.OneToMany;
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
@@ -25,6 +27,9 @@ public abstract class Compte {
 	protected String nom;
 	@Column(unique = true)
 	protected String surnom;
+	
+	@OneToMany(mappedBy = "compte")
+	protected List<Session> sessions;
 	
 	public Compte() {
 		super();
@@ -105,11 +110,25 @@ public abstract class Compte {
 	public void setSurnom(String surnom) {
 		this.surnom = surnom;
 	}
+	
+	
+	public List<Session> getSessions() {
+		return sessions;
+	}
+
+	public void setSessions(List<Session> sessions) {
+		this.sessions = sessions;
+	}
+
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
 
 	@Override
 	public String toString() {
 		return "Compte [id=" + id + ", login=" + login + ", password=" + password + ", prenom=" + prenom + ", nom="
-				+ nom + ", surnom=" + surnom + "]";
+				+ nom + ", surnom=" + surnom + ", sessions=" + sessions + "]";
 	}
 
 	@Override

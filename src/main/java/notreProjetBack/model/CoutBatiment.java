@@ -9,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
@@ -20,11 +21,11 @@ public class CoutBatiment {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	Integer id;
 	
-	@OneToOne
+	@ManyToOne
 	Batiment batiment;
 	
-	@OneToMany
-	List<Ressource> ressources;
+	@ManyToOne
+	Ressource ressource;
 	int cout;
 	
 	
@@ -59,12 +60,12 @@ public class CoutBatiment {
 		this.batiment = batiment;
 	}
 
-	public List<Ressource> getRessources() {
-		return ressources;
+	public Ressource getRessource() {
+		return ressource;
 	}
 
-	public void setRessources(List<Ressource> ressources) {
-		this.ressources = ressources;
+	public void setRessource(Ressource ressource) {
+		this.ressource = ressource;
 	}
 	public int getCout() {
 		return cout;
