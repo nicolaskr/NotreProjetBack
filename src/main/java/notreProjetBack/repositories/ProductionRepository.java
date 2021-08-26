@@ -6,9 +6,11 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import notreProjetBack.model.Batiment;
-import notreProjetBack.model.Session;
+import notreProjetBack.model.Production;
 
-public interface BatimentRepository extends JpaRepository <Batiment, Integer> {
+public interface ProductionRepository extends JpaRepository <Production, Integer> {
+
+	@Query("from Production")
+	List<Production> findProductionBatiment();
 	
-	List<Batiment> findByAmeliorable(Boolean ameliorable);
 }

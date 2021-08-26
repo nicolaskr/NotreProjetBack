@@ -6,9 +6,11 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import notreProjetBack.model.Batiment;
-import notreProjetBack.model.Session;
+import notreProjetBack.model.Defense;
+import notreProjetBack.model.Transformation;
 
-public interface BatimentRepository extends JpaRepository <Batiment, Integer> {
-	
-	List<Batiment> findByAmeliorable(Boolean ameliorable);
+public interface DefenseRepository extends JpaRepository <Defense, Integer> {
+
+	@Query("from Defense")
+	List<Defense> findDefenseBatiment();
 }
