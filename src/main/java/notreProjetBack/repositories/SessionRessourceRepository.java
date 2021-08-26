@@ -14,4 +14,5 @@ public interface SessionRessourceRepository  extends JpaRepository <SessionResso
 	List<Ressource> findBySession(Session session);
 	
 	List<Ressource> findBySessionAndRessource(Session session, Ressource ressource);
+	
 }
