@@ -18,6 +18,7 @@ public class CoutBatiment {
 	Integer id;
 	Batiment batiment;
 	Ressource ressource;
+	int cout;
 	
 	
 	@Override
@@ -56,6 +57,11 @@ public class CoutBatiment {
 	public void setRessource(Ressource ressource) {
 		this.ressource = ressource;
 	}
-	
+	public int getCout() {
+		return cout;
+	}
+	public void setCout(int cout) {
+		this.cout = cout;
+	}
 	
 }

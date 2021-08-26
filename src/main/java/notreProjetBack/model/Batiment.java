@@ -1,8 +1,5 @@
 package notreProjetBack.model;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -12,8 +9,9 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.ManyToOne;
 
-import model.Ressource;
-import notreProjetBack.repositories.BatimentRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import notreProjetBack.repositories.CoutBatimentRepository;
 import notreProjetBack.repositories.RessourceRepository;
 
 
@@ -34,8 +32,11 @@ public class Batiment {
 	@ManyToOne
 	protected CoutBatiment cost;
 	
-	protected BatimentRepository batRepo = new BatimentRepository();
-	protected RessourceRepository ressourceRepo = new RessourceRepository();
+	@Autowired
+	protected CoutBatimentRepository cBatRepo;
+	
+	@Autowired
+	protected RessourceRepository ressourceRepo;
 	
 	
 	
@@ -127,17 +128,18 @@ public class Batiment {
 		
 		String outputText = String.format("Nom: "+ this.getNom() + "  Niveau: " + this.level+ "  Defense: " +this.def + "  Attaque: " +this.att + "\n");
 		
-		for(Ressource ressource :batRepo.findCoutByNomBatiment(this.nom)){
+		for(Ressource ressource :cBatRepo.findCoutByBatiment(this)){
 						
-			int costRessource = ressource.getStock();
+			Integer costRessource = cBatRepo.findCoutByBatimentByRessource(this, ressource).get();
 			
 			if(costRessource>0){
 				
-				String nameRessource = ressource.toStringName();
+				String nameRessource = ressource.getNom();
 				outputText += String.format(nameRessource +": "+ costRessource+"  ");
 				
 			}
 		}
+		return outputText;
 	}
 	
 

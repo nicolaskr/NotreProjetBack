@@ -21,7 +21,7 @@ import javax.persistence.OneToMany;
 import model.*;
 import util.Context;
 
-@Entity
+@Entity(name = "part")
 public class Partie {
 
 	@Id
