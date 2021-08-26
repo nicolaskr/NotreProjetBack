@@ -15,8 +15,10 @@ public class SessionRessource {
     @OneToOne
     private Session session;
 
-    @OneToMany
-    private List<Ressource> ressourceList = new ArrayList<>();
+    @OneToOne
+    private Ressource ressource;
+    
+    private int quantite;
 
     public SessionRessource() {
     }

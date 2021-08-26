@@ -37,7 +37,8 @@ public class Batiment {
 	protected CoutBatiment cost;
 	
 	@Autowired
-	protected transient CoutBatimentRepository coutBatRepo;
+	protected transient CoutBatimentRepository cBatRepo;
+	
 	@Autowired
 	protected transient RessourceRepository ressourceRepo;
 

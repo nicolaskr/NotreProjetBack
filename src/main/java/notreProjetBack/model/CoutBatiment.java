@@ -1,5 +1,6 @@
 package notreProjetBack.model;
 
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Entity;
@@ -8,6 +9,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 @Entity
 @Inheritance(strategy=InheritanceType.SINGLE_TABLE)
@@ -16,8 +19,12 @@ public class CoutBatiment {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	Integer id;
+	
+	@OneToOne
 	Batiment batiment;
-	Ressource ressource;
+	
+	@OneToMany
+	List<Ressource> ressources;
 	int cout;
 	
 	
@@ -51,11 +58,13 @@ public class CoutBatiment {
 	public void setBatiment(Batiment batiment) {
 		this.batiment = batiment;
 	}
-	public Ressource getRessource() {
-		return ressource;
+
+	public List<Ressource> getRessources() {
+		return ressources;
 	}
-	public void setRessource(Ressource ressource) {
-		this.ressource = ressource;
+
+	public void setRessources(List<Ressource> ressources) {
+		this.ressources = ressources;
 	}
 	public int getCout() {
 		return cout;
