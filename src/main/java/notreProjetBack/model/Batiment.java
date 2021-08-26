@@ -12,8 +12,9 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.ManyToOne;
 
-import model.Ressource;
-import notreProjetBack.repositories.BatimentRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import notreProjetBack.repositories.CoutBatimentRepository;
 import notreProjetBack.repositories.RessourceRepository;
 
 
@@ -30,16 +31,30 @@ public class Batiment {
 	protected double def;
 	protected double att=0;
 	protected int level=1;
+	protected String type_batiment;
+	protected boolean ameliorable;
 	
+
+
 	@ManyToOne
 	protected CoutBatiment cost;
 	
-	protected BatimentRepository batRepo = new BatimentRepository();
-	protected RessourceRepository ressourceRepo = new RessourceRepository();
+	@Autowired
+	protected transient CoutBatimentRepository coutBatRepo;
+	@Autowired
+	protected transient RessourceRepository ressourceRepo;
 	
 	
 	
 	
+
+	public String getType_batiment() {
+		return type_batiment;
+	}
+
+	public void setType_batiment(String type_batiment) {
+		this.type_batiment = type_batiment;
+	}
 
 	public Batiment() {
 		super();
@@ -71,7 +86,13 @@ public class Batiment {
 	//-----------------------------------------------------------------------------------------------
 	//Getters and Setters
 	
-	
+	public boolean isAmeliorable() {
+		return ameliorable;
+	}
+
+	public void setAmeliorable(boolean ameliorable) {
+		this.ameliorable = ameliorable;
+	}
 
 	public Integer getId() {
 		return id;
@@ -127,7 +148,7 @@ public class Batiment {
 		
 		String outputText = String.format("Nom: "+ this.getNom() + "  Niveau: " + this.level+ "  Defense: " +this.def + "  Attaque: " +this.att + "\n");
 		
-		for(Ressource ressource :batRepo.findCoutByNomBatiment(this.nom)){
+		for(Ressource ressource :coutBatRepo.findCoutByBatiment((this)){
 						
 			int costRessource = ressource.getStock();
 			

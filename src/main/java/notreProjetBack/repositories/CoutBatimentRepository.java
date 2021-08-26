@@ -11,4 +11,7 @@ import notreProjetBack.model.Session;
 public interface CoutBatimentRepository extends JpaRepository <Session, Integer>{
 
 	List<Ressource> findCoutByBatiment(Batiment batiment);
+	
+	
+	
 }
