@@ -41,8 +41,7 @@ public class Defense extends Batiment {
 
 
 
-	public Defense(String nom, double def, double att, int level, boolean ameliorable,
-			List<CoutBatiment> cost) {
+	public Defense(String nom, double def, double att, int level, boolean ameliorable, List<CoutBatiment> cost) {
 		super(nom, def, att, level, ameliorable, cost);
 	}
 

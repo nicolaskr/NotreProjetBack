@@ -61,36 +61,22 @@ public class TestSessionRessourceThibault {
 	@Transactional
 	public void insertTest() {
 		SessionRessource sr = new SessionRessource(sRep.findById(1).get(),rRep.findById(2).get(),12);
-		System.out.println("teeeeeeeeeeeeeeeeeeeeest");
-		System.out.println(sr);
-		System.out.println(sRep.findById(1).get());
-		System.out.println(rRep.findById(2).get());
 		srRep.save(sr);
 		assertNotNull(sr);
 	}
-	/*
+	
 	@Test
 	@Rollback(true)
 	@Transactional
 	public void findBySession() {
-		Ressource bois = new Ressource(1,"Bois");
-		Ressource fer = new Ressource(5,"Fer");
-		Ressource cuivre = new Ressource(6,"Cuivre");
-		Ressource charbon = new Ressource(7,"Charbon");
-		List<Ressource> ressources = new ArrayList();
-		ressources.add(bois);
-		ressources.add(fer);
-		ressources.add(cuivre);
-		ressources.add(charbon);
 		assertEquals(4,srRep.findBySession(sRep.getById(1)).size());
 	}
 	
 	@Test
 	@Rollback(true)
 	@Transactional
-	public void findQuantiteBySessionAndRessource() {
-		SessionRessource sr = new SessionRessource(sRep.findById(1).get(),rRep.findById(2).get(),12);
-		srRep.save(sr);
-		assertEquals(12,srRep.findQuantiteBySessionAndRessource(sr.getSession(),sr.getRessource()).get(),0);
-	}*/
+	public void findBySessionAndRessource() {
+		
+		assertEquals(srRep.findById(1).get(),srRep.findBySessionAndRessource(sRep.findById(1).get(),rRep.findById(7).get()).get());
+	}
 }
