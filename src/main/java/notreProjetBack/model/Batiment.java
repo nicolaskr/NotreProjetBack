@@ -3,6 +3,7 @@ package notreProjetBack.model;
 import java.util.List;
 
 import javax.persistence.DiscriminatorColumn;
+import javax.persistence.DiscriminatorType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -20,8 +21,8 @@ import notreProjetBack.repositories.RessourceRepository;
 
 @Entity
 @Inheritance(strategy=InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name="Batiment")
-public class Batiment {
+@DiscriminatorColumn(name="type_batiment",discriminatorType=DiscriminatorType.STRING)
+public abstract class Batiment {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -30,7 +31,6 @@ public class Batiment {
 	protected double def;
 	protected double att=0;
 	protected int level=1;
-	protected String type_batiment;
 	protected boolean ameliorable;
 	
 
@@ -47,14 +47,6 @@ public class Batiment {
 	
 	
 	
-
-	public String getType_batiment() {
-		return type_batiment;
-	}
-
-	public void setType_batiment(String type_batiment) {
-		this.type_batiment = type_batiment;
-	}
 
 	public Batiment() {
 		super();
@@ -145,12 +137,12 @@ public class Batiment {
 
 	//------------------------------------------------------------------------------------------
 	//Methods
-	public String toStringWithCost() {		
+	/*public String toStringWithCost() {		
 		
 		String outputText = String.format("Nom: "+ this.getNom() + "  Niveau: " + this.level+ "  Defense: " +this.def + "  Attaque: " +this.att + "\n");
 		
 
-		for(Ressource ressource :cBatRepo.findCoutByBatiment((this))){
+		for(Ressource ressource :cBatRepo.findCoutByBatiment(this)){
 
 
 						
@@ -165,6 +157,6 @@ public class Batiment {
 		}
 		return outputText;
 	}
-	
+	*/
 
 }

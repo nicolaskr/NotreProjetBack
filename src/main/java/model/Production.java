@@ -2,7 +2,7 @@ package model;
 
 import javax.persistence.Entity;
 
-@Entity
+@Entity(name="prod")
 public abstract class Production extends Batiment {
 	
 	protected transient Bois b = new Bois(0);

@@ -10,12 +10,12 @@ import org.springframework.data.repository.query.Param;
 import notreProjetBack.model.Batiment;
 import notreProjetBack.model.Ressource;
 import notreProjetBack.model.Session;
+import notreProjetBack.model.SessionBatiment;
 
 public interface CoutBatimentRepository extends JpaRepository <Session, Integer>{
 
-	List<Ressource> findCoutByBatiment(Batiment batiment);
+	List<Ressource> findCoutBySessionBatiment(SessionBatiment sessionBatiment);
 	
-
 	@Query("select cb.cout from CoutBatiment cb where cb.batiment =:batiment and cb.ressource =:ressource")
 	Optional<Integer> findCoutByBatimentByRessource(@Param("batiment") Batiment batiment, @Param("ressource") Ressource ressource);
 

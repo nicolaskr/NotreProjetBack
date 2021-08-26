@@ -1,4 +1,4 @@
-package test;
+package notreProjetBack;
 
 import notreProjetBack.AppSpringNico;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;

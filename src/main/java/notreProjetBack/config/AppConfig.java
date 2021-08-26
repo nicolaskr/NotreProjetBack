@@ -20,7 +20,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @Configuration
 @EnableTransactionManagement
 @PropertySource("classpath:infos.properties")
-@EnableJpaRepositories("notreProjetBack.repository")
+@EnableJpaRepositories("notreProjetBack.repositories")
 public class AppConfig {
 	@Autowired
 	private Environment env;
