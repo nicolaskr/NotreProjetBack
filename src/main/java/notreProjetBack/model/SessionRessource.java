@@ -22,6 +22,19 @@ public class SessionRessource {
 
     public SessionRessource() {
     }
+    
+    public SessionRessource(Session session, Ressource ressource, int quantite) {
+    	this.session=session;
+    	this.ressource=ressource;
+    	this.quantite=quantite;
+    }
+    
+    public SessionRessource(Integer id,Session session, Ressource ressource, int quantite) {
+    	this.session=session;
+    	this.ressource=ressource;
+    	this.quantite=quantite;
+    	this.id=id;
+    }
 
     @Override
     public boolean equals(Object o) {

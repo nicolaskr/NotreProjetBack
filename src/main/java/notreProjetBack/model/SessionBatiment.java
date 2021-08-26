@@ -58,5 +58,6 @@ public class SessionBatiment {
 		this.batiment = batiment;
 	}
 
+	
 
 }

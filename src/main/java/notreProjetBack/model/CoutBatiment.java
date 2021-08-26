@@ -47,8 +47,23 @@ public class CoutBatiment {
 	public CoutBatiment() {
 		super();
 	}
+	
 	public Integer getId() {
 		return id;
+	}
+	
+	public CoutBatiment(Integer id, Batiment batiment, Ressource ressource, int cout) {
+		super();
+		this.id = id;
+		this.batiment = batiment;
+		this.ressource = ressource;
+		this.cout = cout;
+	}
+	public CoutBatiment(Batiment batiment, Ressource ressource, int cout) {
+		super();
+		this.batiment = batiment;
+		this.ressource = ressource;
+		this.cout = cout;
 	}
 	public void setId(Integer id) {
 		this.id = id;

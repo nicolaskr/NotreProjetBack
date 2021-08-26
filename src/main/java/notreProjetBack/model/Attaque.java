@@ -11,7 +11,7 @@ public class Attaque extends Batiment{
 		this.setAmeliorable(true);
 	}
 	
-	public Attaque(int id, String nom, int level, double def,double att,boolean ameliorable)
+	public Attaque(Integer id, String nom, int level, double def,double att,boolean ameliorable)
 	{
 		super(id,nom,level,def,att,ameliorable);
 	}
