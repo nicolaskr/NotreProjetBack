@@ -47,6 +47,17 @@ public abstract class Batiment {
 	
 	
 
+	
+	public Batiment(String nom, double def, double att, int level, boolean ameliorable, List<CoutBatiment> cost) {
+		super();
+		this.nom = nom;
+		this.def = def;
+		this.att = att;
+		this.level = level;
+		this.ameliorable = ameliorable;
+		this.cost = cost;
+	}
+
 	public Batiment() {
 		super();
 	}
