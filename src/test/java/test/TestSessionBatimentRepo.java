@@ -56,9 +56,7 @@ public class TestSessionBatimentRepo {
 	}
 	@Test
 	public void findBatimentBySession() {
-		Joueur j = new Joueur("J","J","J","J","J");
-		
-		<Session> opt= sr.findById(1);
+		Optional<Session> opt= sr.findById(2);
 		System.out.println();
 		List<SessionBatiment> ses = sbr.findBySession(opt.get());
 		System.out.println(ses);
