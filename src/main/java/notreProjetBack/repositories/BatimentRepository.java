@@ -1,5 +1,8 @@
 package notreProjetBack.repositories;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-public class BatimentRepository {
+import model.*;
+
+public interface BatimentRepository extends JpaRepository <Batiment, Integer> {
 
 }
