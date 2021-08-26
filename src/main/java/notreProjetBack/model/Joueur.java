@@ -1,7 +1,12 @@
 package notreProjetBack.model;
 
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
+
 import notreProjetBack.model.Compte;
 
+@Entity
+@DiscriminatorValue("joueur")
 public class Joueur extends Compte{
 
 	public Joueur() {

@@ -63,11 +63,11 @@ public abstract class Compte {
 		this.password = password;
 	}
 
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 	
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 	
@@ -118,11 +118,6 @@ public abstract class Compte {
 
 	public void setSessions(List<Session> sessions) {
 		this.sessions = sessions;
-	}
-
-
-	public void setId(Integer id) {
-		this.id = id;
 	}
 
 	@Override
