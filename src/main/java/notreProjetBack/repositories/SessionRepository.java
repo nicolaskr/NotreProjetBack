@@ -1,5 +1,5 @@
 package notreProjetBack.repositories;
 
-public class SessionRepository {
+public interface SessionRepository {
 
 }
