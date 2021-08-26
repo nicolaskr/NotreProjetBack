@@ -1,4 +1,4 @@
-package test;
+package notreProjetBack.testThibault;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -16,16 +16,19 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
 import notreProjetBack.config.AppConfig;
+import notreProjetBack.model.Attaque;
+import notreProjetBack.model.Defense;
 import notreProjetBack.model.Production;
-import notreProjetBack.repositories.ProductionRepository;
+import notreProjetBack.model.Transformation;
+import notreProjetBack.repositories.AttaqueRepository;
 
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = {AppConfig.class})
-public class TestProductionThibault {
+public class TestAttaqueThibault {
 
 	@Autowired
-	private ProductionRepository pRep;
+	private AttaqueRepository aRep;
 	
 	
 	@BeforeClass
@@ -47,18 +50,19 @@ public class TestProductionThibault {
 	@Test
 	@Rollback(true)
 	@Transactional
-	public void insertTestProd() {
-		Production prod = new Production("prodTest",1,70,70,true);
-		pRep.save(prod);
-		assertNotNull(prod);
+	public void insertTestAtt() {
+		Attaque att = new Attaque("attTest",1,50,50,true);
+		aRep.save(att);
+		assertNotNull(att);
 	}
 	
 	@Test
 	@Rollback(true)
 	@Transactional
-	public void findByTypeBatimentAtt() {
-		Production prod = new Production("prodTest",1,70,70,true);
-		pRep.save(prod);
-		assertEquals(prod, pRep.findProductionBatiment().get(0));
+	public void findBatimentAtt() {
+		Attaque att = new Attaque("attTest",1,50,50,true);
+		aRep.save(att);
+		assertEquals(att, aRep.findAttaqueBatiment().get(0));
 	}
+	
 }
