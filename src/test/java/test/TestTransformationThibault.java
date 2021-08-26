@@ -1,6 +1,7 @@
 package test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 import org.junit.After;
 import org.junit.AfterClass;
@@ -15,17 +16,16 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
 import notreProjetBack.config.AppConfig;
-import notreProjetBack.model.Compte;
-import notreProjetBack.model.Joueur;
-import notreProjetBack.repositories.CompteRepository;
+import notreProjetBack.model.Transformation;
+import notreProjetBack.repositories.TransformationRepository;
 
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = {AppConfig.class})
-public class testCompte {
+public class TestTransformationThibault {
 
 	@Autowired
-	private CompteRepository cptRepo;
+	private TransformationRepository tRep;
 	
 	
 	@BeforeClass
@@ -43,31 +43,23 @@ public class testCompte {
 	@After
 	public void tearDown() throws Exception {
 	}
-
+	
 	@Test
 	@Rollback(true)
 	@Transactional
-	public void insertTest() {
-		Joueur j = new Joueur("J","J","J","J","J");
-		cptRepo.save(j);
+	public void insertTestTransf() {
+		Transformation transf = new Transformation("transfTest",1,70,70,false);
+		tRep.save(transf);
+		assertNotNull(transf);
 	}
 	
 	@Test
 	@Rollback(true)
 	@Transactional
-	public void findBySurnom() {
-		Joueur j = new Joueur("J","J","J","J","J");
-		cptRepo.save(j);
-		assertEquals(j, cptRepo.findBySurnom("J").get());
+	public void findByTypeBatimentAtt() {
+		Transformation transf = new Transformation("transfTest",1,70,70,false);
+		tRep.save(transf);
+		assertEquals(transf, tRep.findTransformationBatiment().get(0));
 	}
 	
-	@Test
-	@Rollback(true)
-	@Transactional
-	public void findByLoginAndPassword() {
-		Joueur j = new Joueur("J","J","J","J","J");
-		cptRepo.save(j);
-		assertEquals(j, cptRepo.findByLoginAndPassword(j.getLogin(),j.getPassword()).get());
-	}
-
 }

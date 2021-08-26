@@ -33,8 +33,6 @@ public abstract class Batiment {
 	protected int level=1;
 	protected boolean ameliorable;
 	
-
-
 	@OneToMany(mappedBy = "batiment")
 	protected List<CoutBatiment> cost;
 	
@@ -67,13 +65,23 @@ public abstract class Batiment {
 		this.def = def;
 	}
 	
-	public Batiment(int id, String nom, int level, double def,double att)
+	public Batiment(int id, String nom, int level, double def,double att,boolean ameliorable)
 	{
 		this.id = id;
 		this.nom = nom;
 		this.level = level;
 		this.def = def;
 		this.att = att;
+		this.ameliorable=ameliorable;
+	}
+	
+	public Batiment(String nom, int level, double def,double att,boolean ameliorable)
+	{
+		this.nom = nom;
+		this.level = level;
+		this.def = def;
+		this.att = att;
+		this.ameliorable=ameliorable;
 	}
 	//-----------------------------------------------------------------------------------------------
 	//Getters and Setters
