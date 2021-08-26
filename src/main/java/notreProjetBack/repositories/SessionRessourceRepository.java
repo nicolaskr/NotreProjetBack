@@ -13,10 +13,7 @@ import notreProjetBack.model.SessionRessource;
 
 public interface SessionRessourceRepository  extends JpaRepository <SessionRessource, Integer>{
 
-	/*@Query("from SessionRessource sr join Ressource r on sr.ressource_id=r.id where sr.session =:session")
-	List<Ressource> findBySession(@Param("session") Session session);
+	List<SessionRessource> findBySession(Session session);
 	
-	@Query("from SessionRessource sr where sr.session =:session and sr.ressource =:ressource ")
-	Optional<Integer> findQuantiteBySessionAndRessource(@Param("session") Session session, @Param("ressource") Ressource ressource);*/
-
+	Optional<SessionRessource> findBySessionAndRessource(Session session, Ressource ressource);
 }
