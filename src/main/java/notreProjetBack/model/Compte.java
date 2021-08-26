@@ -35,7 +35,7 @@ public abstract class Compte {
 		super();
 	}
 	
-	public Compte(int id, String login, String password, String prenom, String nom, String surnom) {
+	public Compte(Integer id, String login, String password, String prenom, String nom, String surnom) {
 		this.id = id;
 		this.login = login;
 		this.password = password;
@@ -57,17 +57,17 @@ public abstract class Compte {
 		this.password = password;
 	}
 	
-	public Compte(int id, String login, String password) {
+	public Compte(Integer id, String login, String password) {
 		this.id = id;
 		this.login = login;
 		this.password = password;
 	}
 
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 	
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 	
@@ -118,11 +118,6 @@ public abstract class Compte {
 
 	public void setSessions(List<Session> sessions) {
 		this.sessions = sessions;
-	}
-
-
-	public void setId(Integer id) {
-		this.id = id;
 	}
 
 	@Override

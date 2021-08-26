@@ -1,6 +1,7 @@
 package test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 import org.junit.After;
 import org.junit.AfterClass;
@@ -15,17 +16,16 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
 import notreProjetBack.config.AppConfig;
-import notreProjetBack.model.Compte;
-import notreProjetBack.model.Joueur;
-import notreProjetBack.repositories.CompteRepository;
+import notreProjetBack.model.Production;
+import notreProjetBack.repositories.ProductionRepository;
 
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = {AppConfig.class})
-public class testCompte {
+public class TestProductionThibault {
 
 	@Autowired
-	private CompteRepository cptRepo;
+	private ProductionRepository pRep;
 	
 	
 	@BeforeClass
@@ -45,27 +45,20 @@ public class testCompte {
 	}
 
 	@Test
-	@Rollback(false)
+	@Rollback(true)
 	@Transactional
-	public void insertTest() {
-		Joueur j = new Joueur("A","A","A","A","A");
-		cptRepo.save(j);
+	public void insertTestProd() {
+		Production prod = new Production("prodTest",1,70,70,true);
+		pRep.save(prod);
+		assertNotNull(prod);
 	}
 	
 	@Test
 	@Rollback(true)
 	@Transactional
-	public void findBySurnom() {
-		assertEquals("A", cptRepo.findBySurnom("A").get().getSurnom());
+	public void findByTypeBatimentAtt() {
+		Production prod = new Production("prodTest",1,70,70,true);
+		pRep.save(prod);
+		assertEquals(prod, pRep.findProductionBatiment().get(0));
 	}
-	
-	@Test
-	@Rollback(true)
-	@Transactional
-	public void findByLoginAndPassword() {
-		Joueur j = new Joueur("J","J","J","J","J");
-		cptRepo.save(j);
-		assertEquals(j, cptRepo.findByLoginAndPassword(j.getLogin(),j.getPassword()).get());
-	}
-
 }

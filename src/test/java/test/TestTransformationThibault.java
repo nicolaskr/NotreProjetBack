@@ -1,6 +1,7 @@
 package test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 import org.junit.After;
 import org.junit.AfterClass;
@@ -15,20 +16,16 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
 import notreProjetBack.config.AppConfig;
-import notreProjetBack.model.Batiment;
-import notreProjetBack.model.Compte;
-import notreProjetBack.model.Defense;
-import notreProjetBack.model.Joueur;
-import notreProjetBack.repositories.BatimentRepository;
-import notreProjetBack.repositories.CompteRepository;
+import notreProjetBack.model.Transformation;
+import notreProjetBack.repositories.TransformationRepository;
 
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = {AppConfig.class})
-public class TestBatiment {
+public class TestTransformationThibault {
 
 	@Autowired
-	private BatimentRepository batRepo;
+	private TransformationRepository tRep;
 	
 	
 	@BeforeClass
@@ -46,25 +43,23 @@ public class TestBatiment {
 	@After
 	public void tearDown() throws Exception {
 	}
-
+	
 	@Test
-	@Rollback(false)
+	@Rollback(true)
 	@Transactional
-	public void insertTest() {
-		Defense b = new Defense("test", 0, 0, 0, false, null);
-		batRepo.save(b);
-		System.out.println("le batiment est : "+b);
-	}
-	
-	
-	@Test
-	public void findByType() {
-		assertEquals("Defense", (String) batRepo.findByType("Defense").get(0).getType());
+	public void insertTestTransf() {
+		Transformation transf = new Transformation("transfTest",1,70,70,false);
+		tRep.save(transf);
+		assertNotNull(transf);
 	}
 	
 	@Test
-	public void findByAmeliorable() {
-		assertEquals("Defense",(String) batRepo.findByAmeliorable(false).get(0).getType());
+	@Rollback(true)
+	@Transactional
+	public void findByTypeBatimentAtt() {
+		Transformation transf = new Transformation("transfTest",1,70,70,false);
+		tRep.save(transf);
+		assertEquals(transf, tRep.findTransformationBatiment().get(0));
 	}
-
+	
 }

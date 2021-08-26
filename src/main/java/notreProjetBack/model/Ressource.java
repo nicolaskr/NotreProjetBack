@@ -14,6 +14,22 @@ public class Ressource {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
 	private String nom;
+
+	public Ressource() {
+		super();
+	}
+	
+	public Ressource(String nom) {
+		super();
+		this.nom = nom;
+	}
+
+	public Ressource(Integer id, String nom) {
+		super();
+		this.id = id;
+		this.nom = nom;
+	}
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
