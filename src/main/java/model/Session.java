@@ -18,7 +18,7 @@ import model.*;
 import util.Context;
 
 
-@Entity
+@Entity (name="sess")
 public class Session {
 
 

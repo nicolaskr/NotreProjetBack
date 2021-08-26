@@ -44,23 +44,22 @@ public class testCompte {
 	public void tearDown() throws Exception {
 	}
 
-//	@Test
-//	@Rollback(true)
-//	@Transactional
-//	public void insertTest() {
-//		Compte j = new Compte("J","J","J","J","J");
-//		cptRepo.save(j);
-//	}
-	
+	@Test
+	@Rollback(true)
+	@Transactional
+	public void insertTest() {
+		Joueur j = new Joueur("J","J","J","J","J");
+		cptRepo.save(j);
+	}
 	
 	@Test
 	public void findBySurnom() {
-		assertEquals("A", cptRepo.findBySurnom("A").get().getSurnom());
+		assertEquals("J", cptRepo.findBySurnom("J").get().getSurnom());
 	}
 	
 	@Test
 	public void findByLoginAndPassword() {
-		assertEquals("A", cptRepo.findByLoginAndPassword("A","A").get().getNom());
+		assertEquals("J", cptRepo.findByLoginAndPassword("J","J").get().getNom());
 	}
 
 }

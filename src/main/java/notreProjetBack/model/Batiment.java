@@ -1,8 +1,5 @@
 package notreProjetBack.model;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -43,7 +40,7 @@ public class Batiment {
 	protected transient CoutBatimentRepository coutBatRepo;
 	@Autowired
 	protected transient RessourceRepository ressourceRepo;
-	
+
 	
 	
 	
@@ -148,17 +145,21 @@ public class Batiment {
 		
 		String outputText = String.format("Nom: "+ this.getNom() + "  Niveau: " + this.level+ "  Defense: " +this.def + "  Attaque: " +this.att + "\n");
 		
-		for(Ressource ressource :coutBatRepo.findCoutByBatiment((this)){
+
+		for(Ressource ressource :coutBatRepo.findCoutByBatiment((this))){
+
+
 						
-			int costRessource = ressource.getStock();
+			Integer costRessource = coutBatRepo.findCoutByBatimentByRessource(this, ressource).get();
 			
 			if(costRessource>0){
 				
-				String nameRessource = ressource.toStringName();
+				String nameRessource = ressource.getNom();
 				outputText += String.format(nameRessource +": "+ costRessource+"  ");
 				
 			}
 		}
+		return outputText;
 	}
 	
 
