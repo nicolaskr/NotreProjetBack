@@ -48,7 +48,7 @@ public class testCompte {
 	@Rollback(true)
 	@Transactional
 	public void insertTest() {
-		Joueur j = new Joueur("J","J","J","J","J");
+		Joueur j = new Joueur("A","A","A","A","A");
 		cptRepo.save(j);
 	}
 	
@@ -56,9 +56,7 @@ public class testCompte {
 	@Rollback(true)
 	@Transactional
 	public void findBySurnom() {
-		Joueur j = new Joueur("J","J","J","J","J");
-		cptRepo.save(j);
-		assertEquals(j, cptRepo.findBySurnom("J").get());
+		assertEquals("A", cptRepo.findBySurnom("A").get().getSurnom());
 	}
 	
 	@Test

@@ -16,11 +16,11 @@ public class Admin extends Compte{
 		super(login, password);
 	}
 
-	public Admin(int id,String login, String password) {
+	public Admin(Integer id,String login, String password) {
 		super(id,login, password);
 	}
 		
-	public Admin (int id, String login, String password, String prenom, String nom, String surnom)
+	public Admin (Integer id, String login, String password, String prenom, String nom, String surnom)
 	{
 		super(id,login,password, prenom, nom, surnom);
 	}	
@@ -28,10 +28,5 @@ public class Admin extends Compte{
 	public Admin (String login, String password, String prenom, String nom, String surnom)
 	{
 		super(login,password, prenom, nom, surnom);
-	}
-		
-	@Override
-	public String toString() {
-		return "Admin [id=" + id + ", login=" + login + ", password=" + password + "]";
 	}
 }
