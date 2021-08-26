@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Objects;
 
 @Entity
+@Table(uniqueConstraints={@UniqueConstraint(columnNames = {"partie_id", "compte_id"})}) 
 public class Session {
 
     @Id
@@ -137,7 +138,6 @@ public class Session {
 	public void setSessionRessource(List<SessionRessource> sessionRessource) {
 		this.sessionRessource = sessionRessource;
 	}
-
 
 
 }
