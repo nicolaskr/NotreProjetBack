@@ -1,5 +1,9 @@
 package notreProjetBack.model;
 
-public class Attaque {
+import javax.persistence.Entity;
+
+
+@Entity
+public class Attaque extends Batiment{
 
 }

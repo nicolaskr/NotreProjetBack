@@ -5,7 +5,7 @@ import java.util.List;
 
 import javax.persistence.Entity;
 
-@Entity
+@Entity(name = "def")
 public abstract class Defense extends Batiment {
 	protected transient Bois b = new Bois(0);
 	protected transient Pierre p = new Pierre(0);

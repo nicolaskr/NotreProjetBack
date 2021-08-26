@@ -2,6 +2,7 @@ package model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.Entity;
@@ -11,9 +12,9 @@ import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 
-@Entity
+@Entity(name = "Bat")
 @Inheritance(strategy=InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name="Batiment")
+@DiscriminatorColumn(name="Batiment+")
 public abstract class Batiment {
 
 	protected transient String nom;
@@ -26,6 +27,8 @@ public abstract class Batiment {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	protected int id;
+	protected boolean ameliorable;
+	
 	
 	protected transient Bois b = new Bois(0);
 	protected transient Pierre p = new Pierre(0);
@@ -61,6 +64,33 @@ public abstract class Batiment {
 		this.nom = nom;
 		this.level = level;
 		this.def = def;
+	}
+	
+	
+	public boolean isAmeliorable() {
+		return ameliorable;
+	}
+
+	public void setAmeliorable(boolean ameliorable) {
+		this.ameliorable = ameliorable;
+	}
+
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(id);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Batiment other = (Batiment) obj;
+		return id == other.id;
 	}
 
 	public String getNom() {

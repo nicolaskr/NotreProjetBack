@@ -2,7 +2,7 @@ package model;
 
 import javax.persistence.Entity;
 
-@Entity
+@Entity(name="att")
 public abstract class Attaque extends Batiment{
 
 	protected boolean used = false;
