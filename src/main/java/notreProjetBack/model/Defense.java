@@ -23,7 +23,7 @@ public class Defense extends Batiment {
 		this.setAmeliorable(true);
 	}
 		
-	public Defense(int id, String nom, int level, double def,double att,boolean ameliorable)
+	public Defense(Integer id, String nom, int level, double def,double att,boolean ameliorable)
 	{
 		super(id,nom,level,def,att,ameliorable);
 	}

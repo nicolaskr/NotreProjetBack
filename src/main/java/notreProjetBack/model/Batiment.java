@@ -58,7 +58,7 @@ public abstract class Batiment {
 		this.def = def;
 	}
 	
-	public Batiment(int id, String nom, int level, double def)
+	public Batiment(Integer id, String nom, int level, double def)
 	{
 		this.id = id;
 		this.nom = nom;
@@ -66,7 +66,7 @@ public abstract class Batiment {
 		this.def = def;
 	}
 	
-	public Batiment(int id, String nom, int level, double def,double att,boolean ameliorable)
+	public Batiment(Integer id, String nom, int level, double def,double att,boolean ameliorable)
 	{
 		this.id = id;
 		this.nom = nom;

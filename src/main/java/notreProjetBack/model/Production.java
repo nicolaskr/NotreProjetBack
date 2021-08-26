@@ -10,7 +10,7 @@ public class Production extends Batiment{
 		this.setAmeliorable(true);
 	}
 	
-	public Production(int id, String nom, int level, double def,double att,boolean ameliorable)
+	public Production(Integer id, String nom, int level, double def,double att,boolean ameliorable)
 	{
 		super(id,nom,level,def,att,ameliorable);
 	}
