@@ -1,8 +1,12 @@
 package notreProjetBack.services;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import model.Attaque;
+import model.Batiment;
 import model.Ressource;
+import model.Session;
 
 public class DraftService {
 	
@@ -19,6 +23,9 @@ public class DraftService {
 	
 	//Defense
 	public void upgrade() {}
+	
+	//Production
+	protected Batiment upgrade(Batiment bati) {}
 	
 	//Bucheron
 	public void upgrade() {}
@@ -52,12 +59,24 @@ public class DraftService {
 	
 	//Muraille
 	public void upgrade() {}
+	
+	//Scierie
+	public void upgrade() {}
+	
+	//Scorpion
+	public void upgrade() {}
 
 	
 	
 	//-------------------------------------------------------------------------------------------------
 	//Ressource=========================================================================================
 	//--------------------------------------------------------------------------------------------------	
+	
+	
+	
+	public void actuAchat(List <Ressource> cost) {}
+	public void actuGain (int gain) {}
+	
 	
 	//Charbon
 	public void actuAchat(List<Ressource> cost) {}
@@ -79,17 +98,17 @@ public class DraftService {
 			
 	public void actuGain (int gain) {}
 	
-	//Or
+	//Pierre
 	public void actuAchat(List<Ressource> cost) {}
 				
 	public void actuGain (int gain) {}
 		
-	//Or
+	//Minerais
 	public void actuAchat(List<Ressource> cost) {}
 			
 	public void actuGain (int gain) {}
 		
-	//Or
+	//Bois
 	public void actuAchat(List<Ressource> cost) {}
 				
 	public void actuGain (int gain) {}
@@ -107,8 +126,105 @@ public class DraftService {
 	//-------------------------------------------------------------------------------------------------
 	//Partie=========================================================================================
 	//--------------------------------------------------------------------------------------------------
+	public int initPartie(int nbJoueur){}
+	
+	public void startPartie(){}
+		
+	public Session finDePartie(){}
+	
+	public void menuFinDePartie(Session vainqueur) {}
+	
+	
+	//-------------------------------------------------------------------------------------------------
+	//Session=========================================================================================
+	//--------------------------------------------------------------------------------------------------
+	
+	public void construitBastide(){}
+	
+	public ArrayList<Batiment> actuDef() {}//Permet d'actualiser les points de defense du joueur ainsi que la liste des batiments du joueur (ATTENTION RENVOI UNE LISTE !!)
+	
+	public ArrayList <Batiment> actuAtt() {} //Permet d'actualiser les point d'attaque du joueur ainsi que la liste des batiments du joueur (ATTENTION RENVOI UNE LISTE !!)
+	
+	public boolean verification(Batiment batiment){} // Verification du nombre de ressources du joueur pour acheter un batiment (renvoie un bool)
+	
+	public void attaque(Session ennemi){} // Attaque de tous les batiments d'un autre joueur
+
+	public void attaque(Session ennemi, Batiment batiment, double ptsAttaque){} // Attaque d'un batiment d'un autre joueur
+
+	public void attaque (Session ennemi, Attaque batimentDAttaque, Batiment batimentDEfense) {}//Attaque d'un batiment d'un autre joueur par un batiment d'attaque
+
+	public void transformation(String batiment,int nbRessource,String nomRessource){}
+
+	public void constructBat(Batiment batiment) {} // Construction d'un batiment (ajout a la liste/actuAtt/ActuDef/ActuRessources)
+
+	public void joueTour(){}
+	
+	public void piocherRessources(){}
+
+	
+	public void menuJoueur(){}
+
+	public void afficheListeRessources() {}
+	
+	private void menuTransformation() {}
+	
+	public void menuAmeliorer(){}
+
+	public boolean listeBatimentContains(String testedValue) {}
+		
+	public void displayOwnedConstWithUpdatePossibilities(){}
+	
+	public void displayOwnedConstWithUpdateNoPossibilities(){}
+	
+	public void menuConstruction(){}
+	
+	public static Batiment stringToBatiment(String batimentName){}
+	
+	public boolean getBatimentAttaque(){}
+
+	public double choixBatimentAttaque(){}
+	
+	private double attaqueAvecTousBatiments() {}
+
+	private double attaqueAvecUnBatiment(List<Integer> listeLigne) {	}
+
+	public void displayBatimentAttaque(){}
+
+	public void displayOwnedConstruction(){}
+
+	public void displayConstructionPossibilites(){}
+		
+	public void displayConstructionNoPossibilites(){}
+		
+	public void menuAttaquer(){}
+	
+	public void menuAttaqueJoueur(double valeurAttaque){}
+
+	public void menuAttaqueChoixBatiment(Session ennemi, double valeurAttaque){}
+
+	
+	public void attaqueJoueur(Session ennemi, double valeurAttaque){}
+
+	
+	public void menuFinDeTour(){}
+
+
+	
+
+	}
+
+	
+
+	}
+
+
+
+
+	
+	
+	
 	
 	
 	
 
-}
+
