@@ -28,7 +28,7 @@ public abstract class Compte {
 	@Column(unique = true)
 	protected String surnom;
 	
-	@OneToMany(mappedBy = "compte")
+	@OneToMany(mappedBy = "id.compte")
 	protected List<Session> sessions;
 	
 	public Compte() {

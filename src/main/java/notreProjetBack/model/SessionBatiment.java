@@ -13,7 +13,7 @@ public class SessionBatiment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @OneToOne
+    @ManyToOne
     private Session session;
 
     @ManyToOne
