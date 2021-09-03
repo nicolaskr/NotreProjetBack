@@ -1,4 +1,4 @@
-package notreProjetBack.service;
+package notreProjetBack.services;
 
 import notreProjetBack.model.Compte;
 import notreProjetBack.model.Joueur;
