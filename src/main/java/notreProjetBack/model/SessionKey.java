@@ -25,7 +25,6 @@ public class SessionKey implements Serializable {
     }
 
 	public SessionKey(Partie partie, Compte compte) {
-		super();
 		this.partie = partie;
 		this.compte = compte;
 	}
