@@ -3,10 +3,15 @@ package notreProjetBack.model;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Production extends Batiment{
 
+	@ManyToOne
+	private Ressource ressource;
+	private int quantiteProduite;
+	
 	public Production() {
 		super();
 		this.setAmeliorable(true);

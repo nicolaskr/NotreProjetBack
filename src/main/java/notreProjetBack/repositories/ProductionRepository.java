@@ -12,5 +12,5 @@ public interface ProductionRepository extends JpaRepository <Production, Integer
 
 	@Query("from Production")
 	List<Production> findProductionBatiment();
-	
+
 }

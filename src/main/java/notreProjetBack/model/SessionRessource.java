@@ -9,37 +9,27 @@ import java.util.Objects;
 @Table(name = "session_ressource")
 public class SessionRessource {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
-
-    @ManyToOne
-    private Session session;
-
-    @ManyToOne
-    @JoinColumn(name = "ressource_id", foreignKey = @ForeignKey(name = "session_ressource_id_pk"))
-    private Ressource ressource;
-    
+	@EmbeddedId
+	private SessionRessourceKey id;
+		    
     private int quantite;
 
     public SessionRessource() {
-    }
-    
-    public SessionRessource(Integer id, Session session, Ressource ressource, int quantite) {
-    	this.session=session;
-    	this.ressource=ressource;
-    	this.quantite=quantite;
-    	this.id=id;
-    }
-    
-    public SessionRessource(Session session, Ressource ressource, int quantite) {
-    	this.session=session;
-    	this.ressource=ressource;
-    	this.quantite=quantite;
+    	
     }
 
+    public SessionRessource(SessionRessourceKey id, int quantite) {
+		super();
+		this.id = id;
+		this.quantite = quantite;
+	}
 
-    @Override
+	public SessionRessource(int quantite) {
+		super();
+		this.quantite = quantite;
+	}
+
+	@Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
@@ -52,32 +42,13 @@ public class SessionRessource {
         return Objects.hash(id);
     }
 
-    public Integer getId() {
+    public SessionRessourceKey getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(SessionRessourceKey id) {
         this.id = id;
     }
-
-    public Session getSession() {
-        return session;
-    }
-
-    public void setSession(Session session) {
-        this.session = session;
-    }
-
-
-	public Ressource getRessource() {
-		return ressource;
-	}
-
-
-	public void setRessource(Ressource ressource) {
-		this.ressource = ressource;
-	}
-
 
 	public int getQuantite() {
 		return quantite;
@@ -86,6 +57,5 @@ public class SessionRessource {
 	public void setQuantite(int quantite) {
 		this.quantite = quantite;
 	}
-
 
 }

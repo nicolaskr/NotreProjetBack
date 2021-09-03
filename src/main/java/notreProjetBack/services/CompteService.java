@@ -40,5 +40,6 @@ public class CompteService {
 			compte = compteRepo.findByLoginAndPassword(login, password).get();
 		}
 		return compte;
+		//gerer joueur et admin
 	}	
 }
