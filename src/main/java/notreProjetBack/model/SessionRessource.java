@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Objects;
 
 @Entity
+@Table(name = "session_ressource")
 public class SessionRessource {
 
     @Id
@@ -16,6 +17,7 @@ public class SessionRessource {
     private Session session;
 
     @ManyToOne
+    @JoinColumn(name = "ressource_id", foreignKey = @ForeignKey(name = "session_ressource_id_pk"))
     private Ressource ressource;
     
     private int quantite;
@@ -23,18 +25,19 @@ public class SessionRessource {
     public SessionRessource() {
     }
     
-    public SessionRessource(Session session, Ressource ressource, int quantite) {
-    	this.session=session;
-    	this.ressource=ressource;
-    	this.quantite=quantite;
-    }
-    
-    public SessionRessource(Integer id,Session session, Ressource ressource, int quantite) {
+    public SessionRessource(Integer id, Session session, Ressource ressource, int quantite) {
     	this.session=session;
     	this.ressource=ressource;
     	this.quantite=quantite;
     	this.id=id;
     }
+    
+    public SessionRessource(Session session, Ressource ressource, int quantite) {
+    	this.session=session;
+    	this.ressource=ressource;
+    	this.quantite=quantite;
+    }
+
 
     @Override
     public boolean equals(Object o) {
