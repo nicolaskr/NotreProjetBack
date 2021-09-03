@@ -3,23 +3,27 @@ package notreProjetBack;
 import notreProjetBack.model.Admin;
 import notreProjetBack.model.Attaque;
 import notreProjetBack.model.Compte;
+import notreProjetBack.model.CoutBatiment;
+import notreProjetBack.model.CoutBatimentKey;
 import notreProjetBack.model.Defense;
 import notreProjetBack.model.Joueur;
 import notreProjetBack.model.Partie;
 import notreProjetBack.model.Production;
+import notreProjetBack.model.Ressource;
 import notreProjetBack.model.Session;
 import notreProjetBack.model.SessionBatiment;
 import notreProjetBack.model.SessionKey;
 import notreProjetBack.repositories.BatimentRepository;
 import notreProjetBack.repositories.CompteRepository;
+import notreProjetBack.repositories.CoutBatimentRepository;
 import notreProjetBack.repositories.PartieRepository;
+import notreProjetBack.repositories.RessourceRepository;
 import notreProjetBack.repositories.SessionBatimentRepository;
 import notreProjetBack.repositories.SessionRepository;
 import notreProjetBack.repositories.SessionRessourceRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import model.Bastide;
 
 
 
@@ -42,6 +46,12 @@ public class AppSpringNico {
 	
 	@Autowired
 	BatimentRepository batimentRepository;
+	
+	@Autowired
+	CoutBatimentRepository coutBatimentRepository;
+	
+	@Autowired
+	RessourceRepository ressourceRepository;
 
 	public  void run(String[] args) {
 
@@ -70,17 +80,27 @@ public class AppSpringNico {
 		sessionRepository.save(session3);
 		sessionRepository.save(session4);
 		
-		Defense bastide = new Defense("Bastide", 1, 5.0, 0, true);
-		Defense mur = new Defense("Mur", 1, 10.0, 0, true);
-		Defense toit = new Defense("Toit", 1, 30.0, 0, true);
 		
-		Attaque fusil = new Attaque("Fusil", 1, 5.0, 50.0, true);
-		Attaque machette = new Attaque("Machette", 1, 10.0, 100.0, true);
-		Attaque lanceRoquette = new Attaque("lanceRoquette", 1, 30.0, 150.0, true);
+		Ressource bois = new Ressource("bois");
+		Ressource pierre = new Ressource("pierre");
+		Ressource minerais = new Ressource("minerais");
 		
-		Production mine = new Production("mine", 1, 5.0, 0, true);
-		Production carriere = new Production("carriere", 1, 10.0, 0, true);
-		Production usine = new Production("usine", 1, 30.0, 0, true);
+		ressourceRepository.save(bois);
+		ressourceRepository.save(pierre);
+		ressourceRepository.save(minerais);
+		
+		
+		Defense bastide = new Defense("Bastide", 5.0, 1, true);
+		Defense mur = new Defense("Mur", 10.0, 1, true);
+		Defense toit = new Defense("Toit", 30.0, 1, true);
+		
+		Attaque fusil = new Attaque("Fusil", 5.0, 50.0, 1, true);
+		Attaque machette = new Attaque("Machette", 10.0, 100.0, 1, true);
+		Attaque lanceRoquette = new Attaque("lanceRoquette", 30.0, 150.0, 1, true);
+		
+		Production mine = new Production("mine", 5.0, 1, true, 5);
+		Production carriere = new Production("carriere", 10.0, 1, true, 5);
+		Production usine = new Production("usine", 30.0, 1, true, 5);
 				
 		batimentRepository.save(bastide);
 		batimentRepository.save(mur);
@@ -93,22 +113,34 @@ public class AppSpringNico {
 		batimentRepository.save(usine);
 		
 		
-		SessionBatiment sessionBatiment1 = new SessionBatiment(session1, bastide, bastide.getDef(), bastide.getAtt());
+		
+		coutBatimentRepository.save(new CoutBatiment(new CoutBatimentKey(mur, bois), 5));
+		coutBatimentRepository.save(new CoutBatiment(new CoutBatimentKey(mur, minerais), 2));
+		coutBatimentRepository.save(new CoutBatiment(new CoutBatimentKey(mur, pierre), 7));
+		
+		coutBatimentRepository.save(new CoutBatiment(new CoutBatimentKey(fusil, minerais), 10));
+		
+		coutBatimentRepository.save(new CoutBatiment(new CoutBatimentKey(carriere, bois), 2));
+		
+
+				
+		
+		SessionBatiment sessionBatiment1 = new SessionBatiment(session1, bastide, bastide.getPointsDefense());
 		sessionBatimentRepository.save(sessionBatiment1);
 		
-		SessionBatiment sessionBatiment2 = new SessionBatiment(session2, bastide, bastide.getDef(), bastide.getAtt());
+		SessionBatiment sessionBatiment2 = new SessionBatiment(session2, bastide, bastide.getPointsDefense());
 		sessionBatimentRepository.save(sessionBatiment2);
 		
-		SessionBatiment sessionBatiment3 = new SessionBatiment(session1, lanceRoquette, lanceRoquette.getDef(), lanceRoquette.getAtt());
+		SessionBatiment sessionBatiment3 = new SessionBatiment(session1, lanceRoquette, lanceRoquette.getPointsDefense(), lanceRoquette.getPointsDAttaque());
 		sessionBatimentRepository.save(sessionBatiment3);
 		
-		SessionBatiment sessionBatiment4 = new SessionBatiment(session2, machette, machette.getDef(), machette.getAtt());
+		SessionBatiment sessionBatiment4 = new SessionBatiment(session2, machette, machette.getPointsDefense(), machette.getPointsDAttaque());
 		sessionBatimentRepository.save(sessionBatiment4);
 		
-		SessionBatiment sessionBatiment5 = new SessionBatiment(session3, usine, usine.getDef(), usine.getAtt());
+		SessionBatiment sessionBatiment5 = new SessionBatiment(session3, usine, usine.getPointsDefense());
 		sessionBatimentRepository.save(sessionBatiment5);
 		
-		SessionBatiment sessionBatiment6 = new SessionBatiment(session4, carriere, carriere.getDef(), carriere.getAtt());
+		SessionBatiment sessionBatiment6 = new SessionBatiment(session4, carriere, carriere.getPointsDefense());
 		sessionBatimentRepository.save(sessionBatiment6);
 		
 	}

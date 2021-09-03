@@ -13,21 +13,27 @@ public class Production extends Batiment{
 	private int quantiteProduite;
 	
 	public Production() {
-		super();
-		this.setAmeliorable(true);
+	}
+
+	public Production(String nom, double pointsDefense, int level, boolean ameliorable, int quantiteProduite) {
+		super(nom, pointsDefense, level, ameliorable);
+		this.quantiteProduite = quantiteProduite;
+	}
+
+	public Ressource getRessource() {
+		return ressource;
+	}
+
+	public void setRessource(Ressource ressource) {
+		this.ressource = ressource;
+	}
+
+	public int getQuantiteProduite() {
+		return quantiteProduite;
+	}
+
+	public void setQuantiteProduite(int quantiteProduite) {
+		this.quantiteProduite = quantiteProduite;
 	}
 	
-	public Production(Integer id, String nom, int level, double def,double att,boolean ameliorable)
-	{
-		super(id,nom,level,def,att,ameliorable);
-	}
-	
-	public Production(String nom, int level, double def,double att,boolean ameliorable)
-	{
-		super(nom,level,def,att,ameliorable);
-	}
-	
-	public Production(String nom, double def, double att, int level, boolean ameliorable, List<CoutBatiment> cost) {
-		super(nom, def, att, level, ameliorable, cost);
-	}
 }

@@ -9,11 +9,16 @@ import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import notreProjetBack.config.AppConfig;
 import notreProjetBack.model.Compte;
 import notreProjetBack.model.Defense;
 import notreProjetBack.model.Partie;
+import notreProjetBack.model.Production;
 import notreProjetBack.model.Session;
 import notreProjetBack.model.SessionBatiment;
 import notreProjetBack.model.SessionKey;
@@ -22,6 +27,8 @@ import notreProjetBack.repositories.PartieRepository;
 import notreProjetBack.repositories.SessionBatimentRepository;
 import notreProjetBack.repositories.SessionRepository;
 
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(classes = {AppConfig.class})
 public class testSessionBatiment {
 
 	@Autowired
@@ -53,14 +60,23 @@ public class testSessionBatiment {
 	}
 
 	@Test
-	public void test() {
-//	Partie partie = partieRepository.findById(1).get();
-//	Compte compte = compteRepository.findById(1).get();
-//	Session session = sessionRepository.findById(new SessionKey(partie,compte)).get();
-//	
-//	List<SessionBatiment> listDef = sessionBatimentRepository.findBySessionAndTypeBatiment("defense", session);
-//	
-//	System.out.println(listDef);
+	public void testFindBySessionAndBatimentProduction() {
+//		Partie partie = partieRepository.findById(1).get();
+//		Compte compte = compteRepository.findById(1).get();
+//		Session session = sessionRepository.findById(new SessionKey(partie,compte)).get();
+		
+		List<Session> sessions = sessionRepository.findAll();
+		System.out.println(sessions);
+		
+		Session session = sessions.get(3);
+		
+		List<SessionBatiment> listDef = sessionBatimentRepository.findBySessionAndBatimentProduction(session);
+		
+		for (SessionBatiment sessionBatiment : listDef) {
+			System.out.println(sessionBatiment.getBatiment().getNom());
+		}
 	}
+	
+
 
 }
