@@ -1,16 +1,16 @@
 package notreProjetBack.repositories;
 
 import java.util.List;
-import java.util.Optional;
+import java.util.Set;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import notreProjetBack.model.Compte;
 import notreProjetBack.model.Partie;
 import notreProjetBack.model.Session;
 import notreProjetBack.model.SessionKey;
-import notreProjetBack.model.Compte;
 
 public interface SessionRepository extends JpaRepository <Session, SessionKey>{
 
@@ -22,5 +22,8 @@ public interface SessionRepository extends JpaRepository <Session, SessionKey>{
 	
 	@Query("select distinct s from Session s where s.id.compte=:compte")	
 	List<Session> findByCompte(@Param(value = "compte") Compte compte);
+	
+	@Query("select distinct s from Session s left join fetch s.sessionBatiment left join fetch s.sessionRessource where s.id.partie =:partie")
+	List<Session> findByPartieWithRessourcesAndBatiments(@Param(value="partie") Partie partie);
 	
 }
