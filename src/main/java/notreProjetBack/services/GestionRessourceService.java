@@ -1,20 +1,15 @@
 package notreProjetBack.services;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
-import model.Batiment;
-import model.Bois;
-import model.Bucheron;
-import model.Carrier;
-import model.Carriere;
-import model.Mine;
-import model.Minerais;
-import model.Mineur;
-import model.Pierre;
-import model.Ressource;
-import model.Scierie;
+import notreProjetBack.model.Production;
+import notreProjetBack.model.Ressource;
 import notreProjetBack.model.Session;
 import notreProjetBack.model.SessionBatiment;
+import notreProjetBack.model.SessionRessource;
+import notreProjetBack.model.SessionRessourceKey;
 import notreProjetBack.repositories.RessourceRepository;
 import notreProjetBack.repositories.SessionBatimentRepository;
 import notreProjetBack.repositories.SessionRessourceRepository;
@@ -35,40 +30,59 @@ public class GestionRessourceService {
 	    * */
 	public String piocherRessource(Session session) {
 		
-		int bois = 0;
-		int pierre = 0;
-		int minerais = 0;
+		int nbois = 0;
+		int npierre = 0;
+		int nminerais = 0;
 		
 		for(int i=0; i<10; i++)
 		{
 			int d = (int)Math.round(Math.random()*2);
 			switch(d)
 			{
-				case 0 : bois++; break;
-				case 1 : pierre++;  break;
-				case 2 : minerais++;  break;
+				case 0 : nbois++; break;
+				case 1 : npierre++;  break;
+				case 2 : nminerais++;  break;
 			}
 		}
 		
-		sessionRessourceRepository.findBySessionAndRessource(session, ressourceRepository.findByNom("bois").get()).get().setQuantite(sessionRessourceRepository.findBySessionAndRessource(session, ressourceRepository.findByNom("bois").get()).get().getQuantite()+bois);
-		sessionRessourceRepository.findBySessionAndRessource(session, ressourceRepository.findByNom("pierre").get()).get().setQuantite(sessionRessourceRepository.findBySessionAndRessource(session, ressourceRepository.findByNom("pierre").get()).get().getQuantite()+pierre);
-		sessionRessourceRepository.findBySessionAndRessource(session, ressourceRepository.findByNom("minerais").get()).get().setQuantite(sessionRessourceRepository.findBySessionAndRessource(session, ressourceRepository.findByNom("minerais").get()).get().getQuantite()+minerais);
+		Ressource rbois = ressourceRepository.findByNom("bois").get();
+		SessionRessourceKey srk = new SessionRessourceKey(session, rbois);
+		SessionRessource sessionRessource = sessionRessourceRepository.findById(srk).get();
+		sessionRessource.setQuantite(sessionRessource.getQuantite()+nbois);
 		
-		return "\nVous avez pioché " + bois + " bois, " + pierre + " pierre(s), " + minerais + " minerais !";
+		Ressource rpierre = ressourceRepository.findByNom("pierre").get();
+		srk = new SessionRessourceKey(session, rpierre);
+		sessionRessource = sessionRessourceRepository.findById(srk).get();
+		sessionRessource.setQuantite(sessionRessource.getQuantite()+npierre);
+		
+		Ressource rminerais = ressourceRepository.findByNom("bois").get();
+		srk = new SessionRessourceKey(session, rminerais);
+		sessionRessource = sessionRessourceRepository.findById(srk).get();
+		sessionRessource.setQuantite(sessionRessource.getQuantite()+nminerais);
+		
+		
+		return "\nVous avez pioché " + nbois + " bois, " + npierre + " pierre(s), " + nminerais + " minerais !";
 	}
 	
 	/*
 	    * Gain ressources batiment de production
 	    * */
 	public String productionRessource(Session session) {
+		int nbois = 0;
+		int npierre = 0;
+		int nminerais = 0;
 		
-		if(sessionBatimentRepository.findBySession(session).isEmpty()) {
+		List<SessionBatiment> listSessionBatimentProduction = sessionBatimentRepository.findBySessionAndBatimentProduction(session);
+		
+		if(listSessionBatimentProduction.isEmpty()) {
 			return "Vous ne produisez pas de ressource";
 		}
 		
-		for(SessionBatiment sessionBatiment: sessionBatimentRepository.findBySession(session) ) {
-			// si batiment de la session batiment est dans la liste des batiment production alors...
+		for(SessionBatiment sessionBatiment : listSessionBatimentProduction) {
+			//sessionRessourceRepository.findById(null)
 		}
+		
+
 		return "message";
 	}
 	

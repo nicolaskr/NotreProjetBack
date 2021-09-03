@@ -54,7 +54,7 @@ public class testSessionBatiment {
 
 	@Test
 	public void test() {
-	Partie partie = partieRepository.findById(1).get();
+//	Partie partie = partieRepository.findById(1).get();
 //	Compte compte = compteRepository.findById(1).get();
 //	Session session = sessionRepository.findById(new SessionKey(partie,compte)).get();
 //	

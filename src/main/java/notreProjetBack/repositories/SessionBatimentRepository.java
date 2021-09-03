@@ -18,4 +18,10 @@ public interface SessionBatimentRepository extends JpaRepository <SessionBatimen
 	
 //	@Query("select s form SessionBatiment s left join fetch s.batiment where s.session=:session and batiment.type_batiment=:type")
 //	List<SessionBatiment> findBySessionAndTypeBatiment(@Param(value="type") String type, @Param(value="session") Session session);
+	
+	@Query("select s from SessionBatiment s where s.session=:session and  s.batiment in(select p from Production p)")
+	List<SessionBatiment> findBySessionAndBatimentProduction(@Param(value="session") Session session);
+
 }
+
+
