@@ -6,13 +6,11 @@ import java.util.List;
 import java.util.Objects;
 
 @Entity
-@Table(uniqueConstraints={@UniqueConstraint(columnNames = {"partie_id", "compte_id"})}) 
 public class Session {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
-
+	
+	@EmbeddedId
+    private SessionKey id;
+    
     @Column(name = "a_joue_le_tours")
     private boolean aJoueLeTours;
 
@@ -26,12 +24,6 @@ public class Session {
 
     private int att;
 
-    @ManyToOne
-    private Partie partie;
-
-    @ManyToOne
-    private Compte compte;
-
     @OneToMany (mappedBy = "session")
     private List<SessionBatiment> sessionBatiment;
 
@@ -41,12 +33,12 @@ public class Session {
     public Session() {
     }
 
-    public Session(Partie partie, Compte compte) {
-        this.partie = partie;
-        this.compte = compte;
-    }
+    public Session(SessionKey id) {
+		super();
+		this.id = id;
+	}
 
-    @Override
+	@Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
@@ -59,11 +51,11 @@ public class Session {
         return Objects.hash(id);
     }
 
-    public Integer getId() {
+    public SessionKey getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(SessionKey id) {
         this.id = id;
     }
 
@@ -107,22 +99,6 @@ public class Session {
         this.att = att;
     }
 
-    public Partie getPartie() {
-        return partie;
-    }
-
-    public void setPartie(Partie partie) {
-        this.partie = partie;
-    }
-
-    public Compte getCompte() {
-        return compte;
-    }
-
-    public void setCompte(Compte compte) {
-        this.compte = compte;
-    }
-
 	public List<SessionBatiment> getSessionBatiment() {
 		return sessionBatiment;
 	}
@@ -138,6 +114,5 @@ public class Session {
 	public void setSessionRessource(List<SessionRessource> sessionRessource) {
 		this.sessionRessource = sessionRessource;
 	}
-
 
 }
