@@ -23,4 +23,7 @@ public interface SessionRepository extends JpaRepository <Session, SessionKey>{
 	@Query("select distinct s from Session s where s.id.compte=:compte")	
 	List<Session> findByCompte(@Param(value = "compte") Compte compte);
 	
+	@Query("select distinct s from Session s left join fetch s.sessionBatiment where s.id.partie =:partie left join fetch s.sessionRessource where s.id.partie =:partie")
+	List<Session> findByPartieWithRessourcesAndBatiments(@Param(value="partie") Partie partie);
+	
 }
