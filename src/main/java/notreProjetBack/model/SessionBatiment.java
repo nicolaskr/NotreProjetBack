@@ -27,19 +27,17 @@ public class SessionBatiment {
     public SessionBatiment() {
     }
 
-    public SessionBatiment(Integer id, Session session, Batiment batiment, double pointsDeVie, double pointsDAttaque) {
-		this.id = id;
-		this.session = session;
-		this.batiment = batiment;
-		this.pointsDeVie = pointsDeVie;
-		this.pointsDAttaque = pointsDAttaque;
-	}
-
     public SessionBatiment(Session session, Batiment batiment, double pointsDeVie, double pointsDAttaque) {
 		this.session = session;
 		this.batiment = batiment;
 		this.pointsDeVie = pointsDeVie;
 		this.pointsDAttaque = pointsDAttaque;
+	}
+    
+    public SessionBatiment(Session session, Batiment batiment, double pointsDeVie) {
+		this.session = session;
+		this.batiment = batiment;
+		this.pointsDeVie = pointsDeVie;
 	}
 
 	@Override

@@ -3,6 +3,7 @@ package notreProjetBack.model;
 import java.util.List;
 import java.util.Objects;
 
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -16,25 +17,26 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "cout_batiment")
-@Inheritance(strategy=InheritanceType.SINGLE_TABLE)
 public class CoutBatiment {
 
-	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	Integer id;
+	@EmbeddedId
+	CoutBatimentKey id;
 	
-	@ManyToOne
-	Batiment batiment;
+	private int cout;
 	
-	@ManyToOne
-	Ressource ressource;
-	int cout;
+	public CoutBatiment() {
+	}
 	
-	
+	public CoutBatiment(CoutBatimentKey id, int cout) {
+		this.id = id;
+		this.cout = cout;
+	}
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
 	}
+	
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -46,47 +48,19 @@ public class CoutBatiment {
 		CoutBatiment other = (CoutBatiment) obj;
 		return Objects.equals(id, other.id);
 	}
-	public CoutBatiment() {
-		super();
-	}
-	
-	public Integer getId() {
+
+	public CoutBatimentKey getId() {
 		return id;
 	}
-	
-	public CoutBatiment(Integer id, Batiment batiment, Ressource ressource, int cout) {
-		super();
-		this.id = id;
-		this.batiment = batiment;
-		this.ressource = ressource;
-		this.cout = cout;
-	}
-	public CoutBatiment(Batiment batiment, Ressource ressource, int cout) {
-		super();
-		this.batiment = batiment;
-		this.ressource = ressource;
-		this.cout = cout;
-	}
-	public void setId(Integer id) {
+
+	public void setId(CoutBatimentKey id) {
 		this.id = id;
 	}
-	public Batiment getBatiment() {
-		return batiment;
-	}
-	public void setBatiment(Batiment batiment) {
-		this.batiment = batiment;
-	}
 
-	public Ressource getRessource() {
-		return ressource;
-	}
-
-	public void setRessource(Ressource ressource) {
-		this.ressource = ressource;
-	}
 	public int getCout() {
 		return cout;
 	}
+
 	public void setCout(int cout) {
 		this.cout = cout;
 	}

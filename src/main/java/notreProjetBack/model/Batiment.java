@@ -1,6 +1,7 @@
 package notreProjetBack.model;
 
 import java.util.List;
+import java.util.Objects;
 
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.DiscriminatorType;
@@ -28,76 +29,42 @@ public abstract class Batiment {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	protected Integer id;
 	protected String nom;
-	protected double def;
-	protected double att=0;
+	protected double pointsDefense;
 	protected int level=1;
 	protected boolean ameliorable;
-	protected String type;
 	
-	@OneToMany(mappedBy = "batiment")
-	protected List<CoutBatiment> cost;
+	@OneToMany(mappedBy = "id.batiment")
+	protected List<CoutBatiment> coutBatiment;
 	
-	@Autowired
-	protected transient CoutBatimentRepository cBatRepo;
+	public Batiment() {
+		
+	}
 	
-	@Autowired
-	protected transient RessourceRepository ressourceRepo;
-
-	
-	
-	
-
-	
-	public Batiment(String nom, double def, double att, int level, boolean ameliorable, List<CoutBatiment> cost) {
+	public Batiment(String nom, double def, int level, boolean ameliorable) {
 		super();
 		this.nom = nom;
-		this.def = def;
-		this.att = att;
+		this.pointsDefense = def;
 		this.level = level;
 		this.ameliorable = ameliorable;
-		this.cost = cost;
+	}
+		
+	@Override
+	public int hashCode() {
+		return Objects.hash(id);
 	}
 
-	public Batiment() {
-		super();
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Batiment other = (Batiment) obj;
+		return Objects.equals(id, other.id);
 	}
-	
-	public Batiment(String nom, int level, double def)
-	{
-		this.nom = nom;
-		this.level = level;
-		this.def = def;
-	}
-	
-	public Batiment(Integer id, String nom, int level, double def)
-	{
-		this.id = id;
-		this.nom = nom;
-		this.level = level;
-		this.def = def;
-	}
-	
-	public Batiment(Integer id, String nom, int level, double def,double att,boolean ameliorable)
-	{
-		this.id = id;
-		this.nom = nom;
-		this.level = level;
-		this.def = def;
-		this.att = att;
-		this.ameliorable=ameliorable;
-	}
-	
-	public Batiment(String nom, int level, double def,double att,boolean ameliorable)
-	{
-		this.nom = nom;
-		this.level = level;
-		this.def = def;
-		this.att = att;
-		this.ameliorable=ameliorable;
-	}
-	//-----------------------------------------------------------------------------------------------
-	//Getters and Setters
-	
+
 	public boolean isAmeliorable() {
 		return ameliorable;
 	}
@@ -122,20 +89,12 @@ public abstract class Batiment {
 		this.nom = nom;
 	}
 
-	public double getDef() {
-		return def;
+	public double getPointsDefense() {
+		return pointsDefense;
 	}
 
-	public void setDef(double def) {
-		this.def = def;
-	}
-
-	public double getAtt() {
-		return att;
-	}
-
-	public void setAtt(double att) {
-		this.att = att;
+	public void setPointsDefense(double pointsDefense) {
+		this.pointsDefense = pointsDefense;
 	}
 
 	public int getLevel() {
@@ -147,44 +106,12 @@ public abstract class Batiment {
 	}
 
 
-	public List<CoutBatiment> getCost() {
-		return cost;
+	public List<CoutBatiment> getCoutBatiment() {
+		return coutBatiment;
 	}
 
-	public void setCost(List<CoutBatiment> cost) {
-		this.cost = cost;
+	public void setCost(List<CoutBatiment> coutBatiment) {
+		this.coutBatiment = coutBatiment;
 	}
-	
-	public String getType() {
-		return type;
-	}
-
-	public void setType(String type) {
-		this.type = type;
-	}
-
-	//------------------------------------------------------------------------------------------
-	//Methods
-	/*public String toStringWithCost() {		
-		
-		String outputText = String.format("Nom: "+ this.getNom() + "  Niveau: " + this.level+ "  Defense: " +this.def + "  Attaque: " +this.att + "\n");
-		
-
-		for(Ressource ressource :cBatRepo.findCoutByBatiment(this)){
-
-
-						
-			Integer costRessource = cBatRepo.findCoutByBatimentByRessource(this, ressource).get();
-			
-			if(costRessource>0){
-				
-				String nameRessource = ressource.getNom();
-				outputText += String.format(nameRessource +": "+ costRessource+"  ");
-				
-			}
-		}
-		return outputText;
-	}
-	*/
 
 }
