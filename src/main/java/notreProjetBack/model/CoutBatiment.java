@@ -12,8 +12,10 @@ import javax.persistence.InheritanceType;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "cout_batiment")
 @Inheritance(strategy=InheritanceType.SINGLE_TABLE)
 public class CoutBatiment {
 
