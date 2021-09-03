@@ -4,12 +4,17 @@ import notreProjetBack.model.Admin;
 import notreProjetBack.model.Compte;
 import notreProjetBack.model.Joueur;
 import notreProjetBack.repositories.CompteRepository;
+import notreProjetBack.repositories.SessionRessourceRepository;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 public class AppSpringNico {
 
 //	@Autowired
 //	CompteRepository compteRepository;
+	
+	@Autowired
+	SessionRessourceRepository sessionRessourceRepo;
 
 	public  void run(String[] args) {
 
@@ -18,6 +23,8 @@ public class AppSpringNico {
 //
 //		compteRepository.save(admin1);
 //		compteRepository.save(joueur1);
+		
+		
 
 	}
 }

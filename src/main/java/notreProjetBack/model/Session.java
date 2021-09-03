@@ -27,7 +27,7 @@ public class Session {
     @OneToMany (mappedBy = "session")
     private List<SessionBatiment> sessionBatiment;
 
-    @OneToMany (mappedBy = "session")
+    @OneToMany (mappedBy = "id.session")
     private List<SessionRessource> sessionRessource;
 
     public Session() {
