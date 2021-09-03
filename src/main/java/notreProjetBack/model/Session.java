@@ -1,9 +1,13 @@
 package notreProjetBack.model;
 
-import javax.persistence.*;
-
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
+
+import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
+import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Session {
@@ -28,7 +32,7 @@ public class Session {
     private List<SessionBatiment> sessionBatiment;
 
     @OneToMany (mappedBy = "id.session")
-    private List<SessionRessource> sessionRessource;
+    private Set<SessionRessource> sessionRessource;
 
     public Session() {
     }
@@ -107,11 +111,11 @@ public class Session {
 		this.sessionBatiment = sessionBatiment;
 	}
 
-	public List<SessionRessource> getSessionRessource() {
+	public Set<SessionRessource> getSessionRessource() {
 		return sessionRessource;
 	}
 
-	public void setSessionRessource(List<SessionRessource> sessionRessource) {
+	public void setSessionRessource(Set<SessionRessource> sessionRessource) {
 		this.sessionRessource = sessionRessource;
 	}
 
