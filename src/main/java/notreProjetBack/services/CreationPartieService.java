@@ -9,6 +9,7 @@ import notreProjetBack.model.Session;
 import notreProjetBack.model.SessionBatiment;
 import notreProjetBack.model.SessionKey;
 import notreProjetBack.model.SessionRessource;
+import notreProjetBack.model.SessionRessourceKey;
 import notreProjetBack.repositories.BatimentRepository;
 import notreProjetBack.repositories.PartieRepository;
 import notreProjetBack.repositories.RessourceRepository;
@@ -88,7 +89,7 @@ public class CreationPartieService {
     public void initSessionRessource(List<Session> sessionList) {
     	for (Session session:sessionList) {
     		for(Ressource ressource:ressourceRepository.findAll()) {
-	        	SessionRessource sessionRessource = new SessionRessource(session, ressource, 0);
+	        	SessionRessource sessionRessource = new SessionRessource(new SessionRessourceKey(session, ressource), 0);
 	        	sessionRessourceRepository.save(sessionRessource);
     		}
     		Batiment batiment = batimentRepository.findByNom("bastide").get();
